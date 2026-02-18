@@ -1,4 +1,4 @@
-from k_sigma import k_sigma
+from _4_1_k_sigma import k_sigma
 from math import *
 
 def critical_sigma():
@@ -14,3 +14,4 @@ def critical_sigma():
     print("sigma_crit = ")
     print(sigma_crit, "MPa") #Broke the line for better readability
     return sigma_crit
+
