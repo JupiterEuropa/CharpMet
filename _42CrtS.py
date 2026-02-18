@@ -1,4 +1,4 @@
-from _41ksig import k_sigma
+from _41KSig import k_sigma
 from math import *
 
 def critical_sigma():
