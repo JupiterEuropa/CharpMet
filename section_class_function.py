@@ -130,6 +130,7 @@ def internal_compressed_flexed_wall (epsilon: float):
             print("This section is of class 2")
             return 2
     
+    # Only ask for sigma values if class 3 or 4 is possible
     sigma1 = float(input("sigma1: "))
     sigma2 = float(input("sigma2: "))
     EPSILON = sigma2/sigma1

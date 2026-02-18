@@ -17,10 +17,10 @@ if fy not in epsilon:
 classification_results = []
 
 for i in range(number_of_cantilevered_compressed_wall):
-    print("Paroi en console comp ", i+1)
+    print("Paroi console comp ", i+1)
     classification_results.append(cantilevered_compressed_wall(epsilon[fy]))
 for i in range(number_of_cantilevered_compressed_flexed_wall):
-    print("Paroi en console comp flex ", i+1)
+    print("Paroi console comp flex ", i+1)
     classification_results.append(cantilevered_compressed_flexed_wall(epsilon[fy]))
 for i in range(number_of_internal_compressed_wall):
     print("Paroi interne comp ", i+1)

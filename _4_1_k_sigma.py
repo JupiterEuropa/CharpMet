@@ -1,4 +1,5 @@
 def k_sigma():
+    print("k_sigma")
     sigma1 = float(input("sigma1: "))
     sigma2 = float(input("sigma2: "))
     case = int(input("Case: "))
@@ -45,5 +46,3 @@ def k_sigma():
 
     print("k_sigma = ", k_sigma)
     return k_sigma
-
-k_sigma()
