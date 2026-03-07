@@ -1,5 +1,5 @@
 from math import sqrt
-from _41KSig import k_sigma
+from KSig import k_sigma
 
 def cantilevered_compressed_wall(epsilon: float):
     c = float(input("c :"))
