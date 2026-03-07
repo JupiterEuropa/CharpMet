@@ -1,5 +1,5 @@
 from epsilon import epsilon
-from section_class_function import *
+from .section_class_function import *
 
 def classify_section():
     print("Parois en console")

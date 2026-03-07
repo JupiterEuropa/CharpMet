@@ -1,5 +1,5 @@
 #Working fine
-from KSig import k_sigma
+from .KSig import k_sigma
 from math import *
 
 def critical_sigma():

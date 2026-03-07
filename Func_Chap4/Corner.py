@@ -1,5 +1,5 @@
 from epsilon import epsilon
-from section_class_function import *
+from .section_class_function import *
 def classify_corner():
     number_of_cantilevered_compressed_wall = int(input("paroi comp: "))
     number_of_cantilevered_compressed_flexed_wall = int(input("paroi comp flex: "))
