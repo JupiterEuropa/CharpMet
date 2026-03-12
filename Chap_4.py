@@ -26,4 +26,3 @@ elif choice == 5:
     classify_tube()
 else:
     print("Invalid choice. Please enter a number between 1 and 5.")
-    exit()
