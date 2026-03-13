@@ -5,11 +5,10 @@ def k_sigma():
     sigma2 = float(input("sigma2: "))
     case = int(input("Case: "))
     if case not in [1, 2, 3]:
-        print("Invalid case number. ")
-        print("Please enter 1, 2, or 3.")
+        print("Invalid case")
         return None
     if sigma1 <= 0:
-        print("sigma1 must be greater than 0.")
+        print("sigma1 > 0")
         return None
     psi = sigma2/sigma1
     if case == 1:

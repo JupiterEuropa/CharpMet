@@ -5,8 +5,9 @@ def classify_tube():
     fy= float(input("fy: "))
 
     if d <= 0 or t <= 0 or fy not in epsilon2:
-        print("d and t must be greater than 0.")
-        print("fy must be one of the following values: ", list(epsilon2.keys()))
+        print("d,t > 0")
+        print("fy:", list(epsilon2.keys()))
+        return None
 
     d_over_t = d/t
 

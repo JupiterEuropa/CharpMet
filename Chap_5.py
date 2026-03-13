@@ -1,12 +1,13 @@
-from Func_Chap5.Int_M_V import *
+from Func_Chap5.V_pl_Rd import *
 
-print("Choose a function:")
-print("4. Shear Area Calc")
+print("Choose:")
+print("4: Shear")
 
 
-choice = int(input("Your choice: "))
+choice = int(input("Choice: "))
 
 if choice == 4:
-    Int_M_V()
+    V_pl_Rd()
 else:
-    print("Invalid choice. Please enter a number between 1 and 1.")
+    print("Invalid")
+    print("Enter 4")

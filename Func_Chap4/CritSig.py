@@ -12,7 +12,7 @@ def critical_sigma():
 
     k_sigma_value = k_sigma()
     if t <= 0 or b <= 0:
-        print("t and b must be greater than 0.")
+        print("t,b > 0")
         return None
     sigma_crit = k_sigma_value * (pi**2 * E) / (12 * (1 - nu**2)) * (t/b)**2
     print("sigma_crit = ")
