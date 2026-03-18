@@ -1,7 +1,5 @@
 from .V_pl_Rd import *
-import math
-from gamma import gamma_M
-from .Aeff_V_calc import A_eff_V
+from constant import *
 
 def Int_M_V():
     choice = None

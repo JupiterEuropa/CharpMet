@@ -1,4 +1,4 @@
-from epsilon import epsilon
+from constant import epsilon
 from .section_class_function import *
 
 def classify_section():
