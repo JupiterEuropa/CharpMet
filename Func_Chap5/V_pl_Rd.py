@@ -28,6 +28,10 @@ def V_pl_Rd(A = None, b = None, t_f = None, t_w = None,
             number_of_holes = int(input("Number of holes: "))
             hole_area = number_of_holes * (math.pi * (hole_diameter/2)**2)
             area = area - hole_area
-            return print("V_pl,Rd =", area*fy/math.sqrt(3)/gamma_M[2]), area, choice
+            V_pl_rd = area*fy/math.sqrt(3)/gamma_M[2]
+            print("V_pl,Rd =", V_pl_rd)
+            return V_pl_rd, area, choice
         else:
-            return print("V_pl,Rd =", area*fy/math.sqrt(3)/gamma_M[0]), area, choice
+            V_pl_rd = area*fy/math.sqrt(3)/gamma_M[0]
+            print("V_pl,Rd =", V_pl_rd)
+            return V_pl_rd, area, choice

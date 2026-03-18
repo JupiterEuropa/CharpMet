@@ -14,7 +14,9 @@ def Rolled_I_H_Shear_Parallel_Web(A = None, h = None, b = None, t_f = None, t_w 
         t_w = float(input("t_w: "))
     if r == None:
         r = float(input("r: "))
-    return print("Shear Area :", max(A - 2*b*t_f + (t_w + 2*r)*t_f, (h-2*t_f)*t_w))
+    A_V = max(A - 2*b*t_f + (t_w + 2*r)*t_f, (h-2*t_f)*t_w)
+    print("Shear Area :", A_V)
+    return A_V
 
 def Welded_I_H_Shear_Parallel_Web(h_w = None, t_w = None, number_of_webs = None):
     A_w = 0
@@ -30,7 +32,8 @@ def Welded_I_H_Shear_Parallel_Web(h_w = None, t_w = None, number_of_webs = None)
             A_w = A_w + h_w * t_w
     else:
         A_w = A_w + h_w * t_w
-    return print("Shear Area :", A_w)
+    print("Shear Area :", A_w)
+    return A_w
 
 def Rolled_I_H_Shear_Perpendicular_Web(b = None, t_f = None, t_w = None, r = None):
     print("I/H, Shear T Web")
@@ -43,7 +46,10 @@ def Rolled_I_H_Shear_Perpendicular_Web(b = None, t_f = None, t_w = None, r = Non
         t_w = float(input("Web thick: "))
     if r == None:
         r = float(input("Radius (r): "))
-    return print("Shear Area :", 2*b*t_f + (t_w + r)*t_w)
+    
+    A_V = 2*b*t_f + (t_w + r)*t_w
+    print("Shear Area :", A_V)
+    return A_V
 
 def Welded_I_H_Shear_Perpendicular_Web(A = None, h_w = None, t_w = None, number_of_webs = None):
     A_w = 0
@@ -60,8 +66,9 @@ def Welded_I_H_Shear_Perpendicular_Web(A = None, h_w = None, t_w = None, number_
             A_w = A_w + t_w * h_w
     else:
         A_w = t_w * h_w
-    
-    return print("Shear Area :", A - A_w)
+    A_V = A - A_w
+    print("Shear Area :", A - A_V)
+    return A_V
 
 def Rolled_U_Shear_Parallel_Web(A = None, b = None, t_f = None, t_w = None, r = None):
     print("U, Shear // Web")
@@ -76,7 +83,10 @@ def Rolled_U_Shear_Parallel_Web(A = None, b = None, t_f = None, t_w = None, r = 
         t_w = float(input("Web thick: "))
     if r == None:
         r = float(input("Radius (r): "))
-    return print("Shear Area :", A - 2*b*t_f + (t_w +r)*t_f)
+    
+    A_V = A - 2*b*t_f + (t_w +r)*t_f
+    print("Shear Area :", A_V)
+    return A_V
 
 def Rolled_T_Shear_Parallel_Web(A = None, b = None, t_f = None):
     print("T, Shear // Web")
@@ -87,7 +97,10 @@ def Rolled_T_Shear_Parallel_Web(A = None, b = None, t_f = None):
         b = float(input("Flange (b): "))
     if t_f == None:
         t_f = float(input("Flange thick: "))
-    return print("Shear Area :", 0.9*(A - b*t_f))
+    
+    A_V = 0.9*(A - b*t_f)
+    print("Shear Area :", A_V)
+    return A_V
 
 def Rolled_Rectangular_Shear_Parallel_Web(A = None, h = None, b = None):
     print("Rectangular,")
@@ -99,7 +112,10 @@ def Rolled_Rectangular_Shear_Parallel_Web(A = None, h = None, b = None):
         h = float(input("Height (h): "))
     if b == None:
         b = float(input("Width (b): "))
-    return print("Shear Area :", A*h/(b+h))
+    
+    A_V = A*h/(b+h)
+    print("Shear Area :", A_V)
+    return A_V
 
 def Rolled_Rectangular_Shear_Perpendicular_Web(A = None, h = None, b = None):
     print("Rectangular,")
@@ -111,11 +127,17 @@ def Rolled_Rectangular_Shear_Perpendicular_Web(A = None, h = None, b = None):
         h = float(input("Height (h): "))
     if b == None:
         b = float(input("Width (b): "))
-    return print("Shear Area :", A*b/(b+h))
+    
+    A_V = A*b/(b+h)
+    print("Shear Area :", A_V)
+    return A_V
 
 def Tube_Shear(A = None):
     print("Tube, Shear")
     print("Enter dimensions:")
     if A == None:
         A = float(input("Area (A): "))
-    return print("Shear Area :", 2*A/math.pi)
+
+    A_V = 2*A/math.pi
+    print("Shear Area :", A_V)
+    return A_V

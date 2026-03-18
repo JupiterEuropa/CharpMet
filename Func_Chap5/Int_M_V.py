@@ -1,5 +1,6 @@
 from .V_pl_Rd import *
 from constant import *
+from Func_Chap5.Flexion_function import *
 
 def Int_M_V():
     choice = None
@@ -35,11 +36,15 @@ def Int_M_V():
             if plastic_elastic == 1:
                 print("Plastic section")
                 W_pl = float(input("W_pl: "))
-                return print("M_pl,Rd =", fyr*W_pl/gamma_M[0])
+                M_V_pl_Rd = fyr*W_pl/gamma_M[0]
+                print("M_V_pl,Rd =", M_V_pl_Rd)
+                return M_V_pl_Rd
             else:
                 print("Elastic section")
                 W_el = float(input("W_el: "))
-                return print("M_pl,Rd =", fyr*W_el/gamma_M[0])
+                M_V_el_Rd = fyr*W_el/gamma_M[0]
+                print("M_V_el,Rd =", M_V_el_Rd)
+                return M_V_el_Rd
         else:
             print("I/H section")
             
@@ -54,7 +59,17 @@ def Int_M_V():
             
 
             M_V_y_rd = (W_pl-rho*area**2/4/t_w)*fy/gamma_M[0]
-            return print("M_V,y,Rd =", M_V_y_rd)
+            print("M_V,y,Rd =", M_V_y_rd)
+            return M_V_y_rd
                 
     else:
-        print("No interraction")
+        print("No interraction M-V")
+        plastic_elastic = int(input("Plastic or elastic? (1/0)"))
+        if plastic_elastic == 1:
+            M_pl_rd = M_pl_Rd(fy= fy)
+            print("M_pl_Rd= ", M_pl_rd)
+            return M_pl_rd
+        else:
+            M_el_rd = M_el_Rd(fy= fy)
+            print("M_el_Rd= ", M_el_rd)
+            return M_el_rd
