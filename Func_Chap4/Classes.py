@@ -12,7 +12,7 @@ def classify_section():
 
     fy = float(input("fy: "))
     if fy not in epsilon:
-        print("fy must be one of\nthe following:", list(epsilon.keys()))
+        print("fy:", list(epsilon.keys()))
     else:
 
         classification_results = []

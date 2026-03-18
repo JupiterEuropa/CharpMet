@@ -1,36 +1,33 @@
 from .Aeff_V_function import *
-def V_pl_Rd():
-    print("Shear Calc:")
-    print("Choose:")
-    print("1-2: I/H (R/W) //")
-    print("3-4: I/H (R/W) T")
-    print("5-6: U/T //")
-    print("7-8: Rect // T")
-    print("9: Tube")
-    choice = int(input("Choice: "))
-
-    if choice == 1:
-        area=Rolled_I_H_Shear_Parallel_Web()
-    elif choice == 2:
-        area=Welded_I_H_Shear_Parallel_Web()
-    elif choice == 3:
-        area=Rolled_I_H_Shear_Perpendicular_Web()
-    elif choice == 4:
-        area=Welded_I_H_Shear_Perpendicular_Web()
-    elif choice == 5:
-        area=Rolled_U_Shear_Parallel_Web()
-    elif choice == 6:
-        area=Rolled_T_Shear_Parallel_Web()
-    elif choice == 7:
-        area=Rolled_Rectangular_Shear_Parallel_Web()
-    elif choice == 8:
-        area=Rolled_Rectangular_Shear_Perpendicular_Web()
-    elif choice == 9:
-        area=Tube_Shear()
-    else:
-        print("Invalid")
-        print("Enter 1-9")
+from gamma import gamma_M
+from epsilon import epsilon
+from eta import eta
+from .Aeff_V_calc import A_eff_V
+def V_pl_Rd(A = None, b = None, t_f = None, t_w = None, 
+            h = None, h_w = None, r = None, number_of_webs = None, 
+             fy = None) :  
+    print("Verification of veiling")
     
-    fy = float(input("fy: "))
+    if fy == None:
+        fy = float(input("fy: "))
+    if h_w == None:
+        h_w = float(input("Web height (h_w): "))
+    if t_w == None:
+        t_w = float(input("Web tickness (t_w): "))
 
-    return print("V_pl,Rd =", area*fy/math.sqrt(3))
+    if h_w/t_w >= 72*epsilon[fy]/eta(fy):
+        print("Instability from shear")
+        return None
+    else:
+        print("No, instability")
+        area, choice = A_eff_V(A = A, b = b, t_f = t_f, t_w = t_w, h= h, h_w= h_w, r= r, number_of_webs= number_of_webs, choice= choice)
+        print("Any holes in the web ? (1/0)")
+        holes = int(input())
+        if holes == 1:
+            hole_diameter = float(input("Hole diameter: "))
+            number_of_holes = int(input("Number of holes: "))
+            hole_area = number_of_holes * (math.pi * (hole_diameter/2)**2)
+            area = area - hole_area
+            return print("V_pl,Rd =", area*fy/math.sqrt(3)/gamma_M[2]), area, choice
+        else:
+            return print("V_pl,Rd =", area*fy/math.sqrt(3)/gamma_M[0]), area, choice
