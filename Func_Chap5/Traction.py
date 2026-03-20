@@ -2,9 +2,9 @@ from constant import *
 
 def N_pl_Rd(A = None, fy = None):
     print("Traction calc")
-    if A == None:
+    if A is None:
         A = float(input("A: "))
-    if fy == None:
+    if fy is None:
         fy = float(input("fy: "))
     
     
@@ -16,17 +16,17 @@ def N_pl_Rd(A = None, fy = None):
     return N_pl_rd
 
 def N_u_Rd(b = None, t = None, fu = None, s = None, p = None, d0 = None):
-    if b == None:
+    if b is None:
         b = float(input("b: "))
-    if t == None:
+    if t is None:
         t = float(input("t: "))
-    if fu == None:
+    if fu is None:
         fu = float(input("fu: "))
-    if s == None:
+    if s is None:
         s = float(input("s: "))
-    if p == None:
+    if p is None:
         p = float(input("p: "))
-    if d0 == None:
+    if d0 is None:
         d0 = float(input("d0: "))
         
     choice = int(input("Section 1-1 or 2-2 ?(1/2)"))

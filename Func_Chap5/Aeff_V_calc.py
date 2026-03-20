@@ -3,6 +3,7 @@ from .Aeff_V_function import *
 
 def A_eff_V(A = None, b = None, t_f = None, t_w = None, 
             h = None, h_w = None, r = None, number_of_webs = None):
+    print("Shear A Calc:")
     while True:
         print("Shear A Calc:")
         

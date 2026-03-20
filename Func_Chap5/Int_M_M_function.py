@@ -5,9 +5,13 @@ def Int_M_M_cl1_cl2(A = None, A_w = None, b = None, t_f = None, t_w = None,
                     fy = None, N_Ed = None, M_y_Ed = None, M_z_Ed = None, 
                     W_y_pl = None, W_z_pl = None, choice_section = None
                     ):
-    while M_y_Ed == None or M_z_Ed == None or flag:
-        M_y_Ed = abs(float(input("M_y_Ed: (tbd: 0)")))
-        M_z_Ed = abs(float(input("M_z_Ed: (tbd: 0)")))
+    print("Int M-M cl1/cl2 Calc")
+    while M_y_Ed is None or M_z_Ed is None or flag:
+        
+        if M_y_Ed is None or M_y_Ed == 0:
+            M_y_Ed = abs(float(input("M_y_Ed: (tbd: 0)")))
+        if M_z_Ed is None or M_z_Ed == 0:
+            M_z_Ed = abs(float(input("M_z_Ed: (tbd: 0)")))
 
         flag = (M_y_Ed == 0 and M_z_Ed == 0)
         if flag:
@@ -15,9 +19,9 @@ def Int_M_M_cl1_cl2(A = None, A_w = None, b = None, t_f = None, t_w = None,
             input("Any key to continue...")
             continue
 
-    if fy == None:
+    if fy is None:
         fy = float(input("fy: "))
-    if choice_section == None:
+    if choice_section is None:
         print("Choose:")
         print("1: I/H ")
         print("2: Tube")

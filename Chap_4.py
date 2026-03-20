@@ -5,8 +5,9 @@ from Func_Chap4.KSig import *
 from Func_Chap4.Tube import *
 from Func_Chap4.section_class_function import *
 
+print("Choose a function:")
 while True:
-    print("Choose a function:")
+    
     print("1. Critical Sigma")
     print("2. K Sigma")
     print("3. Classify Section")

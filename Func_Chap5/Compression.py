@@ -2,9 +2,9 @@ from constant import gamma_M
 
 def N_c_Rd(A = None, fy = None):
     print("N_c_Rd Calc")
-    if A == None:
+    if A is None:
         A = float(input("A: "))
-    if fy == None:
+    if fy is None:
         fy = float(input("fy: "))
     
     N_c_rd = A * fy / gamma_M[0]
