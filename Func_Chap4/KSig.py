@@ -24,11 +24,11 @@ def k_sigma():
         elif psi > -1:  ks = 0.57 - 0.21*psi + 0.07*psi**2
         else:           ks = 0.85
 
-    else:  # case == 3
+    else:
         if   psi >= 1:  ks = 0.43
         elif psi >  0:  ks = 0.579 / (0.34 + psi)
         elif psi > -1:  ks = 1.7 - 5*psi + 17.1*psi**2
         else:           ks = 23.8
 
-    print(f"k_sigma = {ks}")
+    print("k_sigma = {:.4g}".format(ks))
     return ks

@@ -4,7 +4,6 @@ def Int_M_M_cl1_cl2(fy=None, W_y_pl=None, W_z_pl=None,
                     M_y_Ed=None, M_z_Ed=None, choice_section=None):
     print("Int M-M cl1/cl2")
 
-    # Ensure at least one moment is non-zero
     flag = True
     while flag:
         if M_y_Ed is None or M_y_Ed == 0:
@@ -39,9 +38,9 @@ def Int_M_M_cl1_cl2(fy=None, W_y_pl=None, W_z_pl=None,
 
     if M_y_Ed == 0:
         M_y_Ed = (1 - (M_z_Ed / M_pl_z_rd)**beta)**(1/alpha) * M_pl_y_rd
-        print(f"M_y,Ed = {M_y_Ed:.4g}")
+        print("M_y,Ed = {:.4g}".format(M_y_Ed))
         return M_y_Ed
     else:
         M_z_Ed = (1 - (M_y_Ed / M_pl_y_rd)**alpha)**(1/beta) * M_pl_z_rd
-        print(f"M_z,Ed = {M_z_Ed:.4g}")
+        print("M_z,Ed = {:.4g}".format(M_z_Ed))
         return M_z_Ed

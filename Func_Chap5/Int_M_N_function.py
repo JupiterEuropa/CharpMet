@@ -11,7 +11,6 @@ def Int_M_N_I_y_y_cl1_cl2(A=None, A_w=None, b=None, t_f=None, t_w=None,
     if t_f is None: t_f = float(input("t_f: "))
     if fy  is None: fy  = float(input("fy: "))
 
-    # Inverse mode: N_Ed=0 means solve for N_Ed given M_N,y,Rd
     M_N_Rd = None
     while True:
         if N_Ed is None:
@@ -33,17 +32,16 @@ def Int_M_N_I_y_y_cl1_cl2(A=None, A_w=None, b=None, t_f=None, t_w=None,
     M_pl_rd = M_pl_Rd(fy=fy)
 
     if N_Ed == 0:
-        # Inverse: back-calculate N_Ed from M_N,y,Rd
         N_Ed = -N_pl_rd * (M_N_Rd / (M_pl_rd * (1 - a/2)) - 1)
-        print(f"N_Ed = {N_Ed:.4g}")
+        print("N_Ed = {:.4g}".format(N_Ed))
         return N_Ed
     elif n > 0.25 or N_Ed > 0.5 * A_w * fy / gamma_M[0]:
         M_N_Rd = M_pl_rd * min((1 - n) / (1 - a/2), 1)
-        print(f"M_N,Rd = {M_N_Rd:.4g}")
+        print("M_N,Rd = {:.4g}".format(M_N_Rd))
         return M_N_Rd
     else:
         print("No M-N interaction")
-        print(f"M_pl,Rd = {M_pl_rd:.4g}")
+        print("M_pl,Rd = {:.4g}".format(M_pl_rd))
         return M_pl_rd
 
 
@@ -65,14 +63,14 @@ def Int_M_N_I_z_z_cl1_cl2(A=None, A_w=None, b=None, t_f=None, t_w=None,
 
     if n > 0.5 or N_Ed > A_w * fy / gamma_M[0]:
         if n <= a:
-            print(f"n<=a: M_N,Rd = {M_pl_rd:.4g}")
+            print("n<=a: M_N,Rd = {:.4g}".format(M_pl_rd))
             return M_pl_rd
         M_N_Rd = M_pl_rd * (1 - ((n - a) / (1 - a))**2)
-        print(f"M_N,Rd = {M_N_Rd:.4g}")
+        print("M_N,Rd = {:.4g}".format(M_N_Rd))
         return M_N_Rd
     else:
         print("No M-N interaction")
-        print(f"M_pl,Rd = {M_pl_rd:.4g}")
+        print("M_pl,Rd = {:.4g}".format(M_pl_rd))
         return M_pl_rd
 
 
@@ -91,7 +89,7 @@ def Int_M_N_Rect_Tube_y_y_cl1_cl2(A=None, A_w=None, b=None, t_f=None,
     n       = N_Ed / N_pl_rd
     a_w     = min(1 - 2*b*t_f / A, 0.5)
     M_N_Rd  = M_pl_rd * min((1 - n) / (1 - a_w/2), 1)
-    print(f"M_N,y,Rd = {M_N_Rd:.4g}")
+    print("M_N,y,Rd = {:.4g}".format(M_N_Rd))
     return M_N_Rd
 
 
@@ -110,5 +108,5 @@ def Int_M_N_Rect_Tube_z_z_cl1_cl2(A=None, A_w=None, b=None, t_w=None,
     n       = N_Ed / N_pl_rd
     a_f     = min(1 - 2*h*t_w / A, 0.5)
     M_N_Rd  = M_pl_rd * min((1 - n) / (1 - a_f/2), 1)
-    print(f"M_N,z,Rd = {M_N_Rd:.4g}")
+    print("M_N,z,Rd = {:.4g}".format(M_N_Rd))
     return M_N_Rd

@@ -1,9 +1,10 @@
-from .KSig import k_sigma
 from math import pi
-from constant import E, nu
+from .KSig import k_sigma
+from constant import E
 
 def critical_sigma():
     print("critical_sigma")
+    nu = 0.3
 
     t = float(input("t: "))
     b = float(input("b: "))
@@ -15,5 +16,5 @@ def critical_sigma():
     ks = k_sigma()
     sigma_crit = ks * (pi**2 * E) / (12 * (1 - nu**2)) * (t/b)**2
 
-    print(f"sigma_crit = {sigma_crit:.2f} MPa")
+    print("sigma_crit = {:.4g} MPa".format(sigma_crit))
     return sigma_crit

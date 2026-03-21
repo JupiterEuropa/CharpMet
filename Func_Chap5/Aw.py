@@ -1,11 +1,11 @@
 def A_w_I_H(A=None, A_w=None, b=None, t_f=None,
-            h_w=None, t_w=None, welded_rolled: bool = None):
+            h_w=None, t_w=None, welded_rolled=None):
 
     if A_w is None:
         A_w = float(input("A_w known (0=no): "))
 
     if A_w != 0:
-        print(f"A_w = {A_w:.4g}")
+        print("A_w = {:.4g}".format(A_w))
         return A_w
 
     if welded_rolled is None:
@@ -21,5 +21,5 @@ def A_w_I_H(A=None, A_w=None, b=None, t_f=None,
         if h_w is None: h_w = float(input("h_w: "))
         A_w = t_w * h_w
 
-    print(f"A_w = {A_w:.4g}")
+    print("A_w = {:.4g}".format(A_w))
     return A_w

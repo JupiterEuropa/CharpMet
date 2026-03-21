@@ -5,7 +5,7 @@ def N_pl_Rd(A=None, fy=None):
     if A  is None: A  = float(input("A: "))
     if fy is None: fy = float(input("fy: "))
     N_pl_rd = A * fy / gamma_M[0]
-    print(f"N_pl_Rd = {N_pl_rd:.4g}")
+    print("N_pl_Rd = {:.4g}".format(N_pl_rd))
     return N_pl_rd
 
 def N_u_Rd(b=None, t=None, fu=None, s=None, p=None, d0=None):
@@ -32,5 +32,5 @@ def N_u_Rd(b=None, t=None, fu=None, s=None, p=None, d0=None):
         return None
 
     N_u_rd = 0.9 * A_net * fu / gamma_M[2]
-    print(f"N_u_Rd = {N_u_rd:.4g}")
+    print("N_u_Rd = {:.4g}".format(N_u_rd))
     return N_u_rd

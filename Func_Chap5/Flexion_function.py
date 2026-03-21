@@ -5,7 +5,7 @@ def M_pl_Rd(fy=None, W_pl=None):
     if fy   is None: fy   = float(input("fy: "))
     if W_pl is None: W_pl = float(input("W_pl: "))
     M_pl_rd = W_pl * fy / gamma_M[0]
-    print(f"M_pl,Rd = {M_pl_rd:.4g}")
+    print("M_pl,Rd = {:.4g}".format(M_pl_rd))
     return M_pl_rd
 
 def M_el_Rd(fy=None, W_el=None):
@@ -13,5 +13,5 @@ def M_el_Rd(fy=None, W_el=None):
     if fy   is None: fy   = float(input("fy: "))
     if W_el is None: W_el = float(input("W_el: "))
     M_el_rd = W_el * fy / gamma_M[0]
-    print(f"M_el,Rd = {M_el_rd:.4g}")
+    print("M_el,Rd = {:.4g}".format(M_el_rd))
     return M_el_rd

@@ -21,5 +21,5 @@ def classify_tube():
         print("cfr: EN 1993-1-6")
         return 4
 
-    print(f"Class {c}")
+    print("Class {}".format(c))
     return c

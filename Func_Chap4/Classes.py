@@ -34,9 +34,9 @@ def classify_section():
 
     for n, label, fn in walls:
         for i in range(n):
-            print(f"{label} {i + 1}")
+            print("{} {}".format(label, i + 1))
             results.append(fn(e))
 
     c = max(results)
-    print(f"Section class {c}")
+    print("Section class {}".format(c))
     return c

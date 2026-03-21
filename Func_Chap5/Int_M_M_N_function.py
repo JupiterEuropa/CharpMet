@@ -69,19 +69,13 @@ def Int_M_M_N_cl1_cl2():
 
     if M_y_Ed == 0:
         M_y_Ed = (1 - (M_z_Ed / M_N_z_rd)**beta)**(1/alpha) * M_N_y_rd
-        print(f"M_y,Ed = {M_y_Ed:.4g}")
+        print("M_y,Ed = {:.4g}".format(M_y_Ed))
     else:
         M_z_Ed = (1 - (M_y_Ed / M_N_y_rd)**alpha)**(1/beta) * M_N_z_rd
-        print(f"M_z,Ed = {M_z_Ed:.4g}")
+        print("M_z,Ed = {:.4g}".format(M_z_Ed))
 
 
-def Int_M_M_N_cl3(mode_MM: bool = False, mode_MN: bool = False):
-    """
-    Shared class-3 interaction check.
-    mode_MM=True : M-M only   (N_Ed = 0 implicitly)
-    mode_MN=True : M-N only   (single bending axis)
-    default      : full M-M-N
-    """
+def Int_M_M_N_cl3(mode_MM=False, mode_MN=False):
     if mode_MM:
         print("Int M-M cl3")
     elif mode_MN:
@@ -109,17 +103,17 @@ def Int_M_M_N_cl3(mode_MM: bool = False, mode_MN: bool = False):
         else:
             break
 
-    A     = 1.0 if mode_MM else float(input("A: "))
+    A      = 1.0 if mode_MM else float(input("A: "))
     W_el_y = float(input("W_el: " if mode_MN else "W_el_y: "))
     W_el_z = 1.0 if mode_MN else float(input("W_el_z: "))
     fy     = float(input("fy: "))
 
     if N_Ed == 0 and not mode_MM:
         N_Ed = (fy - M_z_Ed / W_el_z - M_y_Ed / W_el_y) * A
-        print(f"N_Ed = {N_Ed:.4g}")
+        print("N_Ed = {:.4g}".format(N_Ed))
     elif M_y_Ed == 0:
         M_y_Ed = (fy - N_Ed / A - M_z_Ed / W_el_z) * W_el_y
-        print(f"M_y,Ed = {M_y_Ed:.4g}")
+        print("M_y,Ed = {:.4g}".format(M_y_Ed))
     elif M_z_Ed == 0 and not mode_MN:
         M_z_Ed = (fy - N_Ed / A - M_y_Ed / W_el_y) * W_el_z
-        print(f"M_z,Ed = {M_z_Ed:.4g}")
+        print("M_z,Ed = {:.4g}".format(M_z_Ed))

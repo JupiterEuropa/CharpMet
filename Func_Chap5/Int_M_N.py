@@ -19,7 +19,7 @@ def Int_M_N(A=None, A_w=None, fy=None, b=None, t_f=None, N_Ed=None,
         print("Section type:")
         print("1: I/H")
         print("2: Rect/Tube")
-        choice_section = int(input("Choice: "))  # was wrongly prompting for class
+        choice_section = int(input("Choice: "))
 
     if choice_flex is None:
         print("Bending axis:")

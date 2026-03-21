@@ -1,7 +1,7 @@
 from math import sqrt
 from .KSig import k_sigma
 
-def cantilevered_compressed_wall(epsilon: float):
+def cantilevered_compressed_wall(epsilon):
     c = float(input("c: "))
     t = float(input("t: "))
 
@@ -16,11 +16,11 @@ def cantilevered_compressed_wall(epsilon: float):
     elif r <= 14 * epsilon: c = 3
     else:                   c = 4
 
-    print(f"Wall class {c}")
+    print("Wall class {}".format(c))
     return c
 
 
-def cantilevered_compressed_flexed_wall(epsilon: float):
+def cantilevered_compressed_flexed_wall(epsilon):
     c     = float(input("c: "))
     t     = float(input("t: "))
     alpha = float(input("alpha: "))
@@ -46,11 +46,11 @@ def cantilevered_compressed_flexed_wall(epsilon: float):
         if r <= 21 * epsilon * sqrt(ks): result = 3
         else:                            result = 4
 
-    print(f"Wall class {result}")
+    print("Wall class {}".format(result))
     return result
 
 
-def internal_flexed_wall(epsilon: float):
+def internal_flexed_wall(epsilon):
     c = float(input("c: "))
     t = float(input("t: "))
 
@@ -65,11 +65,11 @@ def internal_flexed_wall(epsilon: float):
     elif r <= 124 * epsilon: c = 3
     else:                    c = 4
 
-    print(f"Wall class {c}")
+    print("Wall class {}".format(c))
     return c
 
 
-def internal_compressed_wall(epsilon: float):
+def internal_compressed_wall(epsilon):
     c = float(input("c: "))
     t = float(input("t: "))
 
@@ -84,11 +84,11 @@ def internal_compressed_wall(epsilon: float):
     elif r <= 42 * epsilon: c = 3
     else:                   c = 4
 
-    print(f"Wall class {c}")
+    print("Wall class {}".format(c))
     return c
 
 
-def internal_compressed_flexed_wall(epsilon: float):
+def internal_compressed_flexed_wall(epsilon):
     c     = float(input("c: "))
     t     = float(input("t: "))
     alpha = float(input("alpha: "))
@@ -119,6 +119,6 @@ def internal_compressed_flexed_wall(epsilon: float):
     return _cls(result)
 
 
-def _cls(n: int) -> int:
-    print(f"Wall class {n}")
+def _cls(n):
+    print("Wall class {}".format(n))
     return n

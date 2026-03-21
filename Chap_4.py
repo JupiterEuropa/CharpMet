@@ -5,17 +5,17 @@ from Func_Chap4.KSig      import k_sigma
 from Func_Chap4.Tube      import classify_tube
 
 MENU = {
-    1: ("Critical Sigma",    critical_sigma),
-    2: ("K Sigma",           k_sigma),
-    3: ("Classify Section",  classify_section),
-    4: ("Classify Corner",   classify_corner),
-    5: ("Classify Tube",     classify_tube),
+    1: ("Critical Sigma",   critical_sigma),
+    2: ("K Sigma",          k_sigma),
+    3: ("Classify Section", classify_section),
+    4: ("Classify Corner",  classify_corner),
+    5: ("Classify Tube",    classify_tube),
 }
 
 print("Choose a function:")
 while True:
     for k, (label, _) in MENU.items():
-        print(f"{k}. {label}")
+        print("{}: {}".format(k, label))
 
     try:
         choice = int(input("Choice (1-5): "))

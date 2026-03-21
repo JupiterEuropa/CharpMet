@@ -29,7 +29,7 @@ def A_eff_V(A=None, b=None, t_f=None, t_w=None,
     print("Shear A Calc:")
     while True:
         for k, (label, _) in MENU.items():
-            print(f"{k:2}. {label}")
+            print("{:2}. {}".format(k, label))
 
         try:
             choice = int(input("Choice (1-10): "))

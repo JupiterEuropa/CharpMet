@@ -21,18 +21,17 @@ def classify_corner():
     results = []
 
     for i in range(n_comp):
-        print(f"Wall {i + 1}")
+        print("Wall {}".format(i + 1))
         results.append(cantilevered_compressed_wall(e))
 
     for i in range(n_comp_flex):
-        print(f"Wall {i + 1}")
+        print("Wall {}".format(i + 1))
         results.append(cantilevered_compressed_flexed_wall(e))
 
     if max(results) <= 2:
-        print(f"Class {max(results)}")
+        print("Class {}".format(max(results)))
         return max(results)
 
-    # Special case: class 3/4 check on corner geometry
     print("Special case")
     h = float(input("h: "))
     b = float(input("b: "))
