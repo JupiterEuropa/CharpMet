@@ -1,36 +1,42 @@
 from constant import epsilon
-from .section_class_function import *
+from .section_class_function import (
+    cantilevered_compressed_wall,
+    cantilevered_compressed_flexed_wall,
+    internal_compressed_wall,
+    internal_flexed_wall,
+    internal_compressed_flexed_wall,
+)
 
 def classify_section():
     print("Cantilevered walls")
-    number_of_cantilevered_compressed_wall = int(input("Comp. wall: "))
-    number_of_cantilevered_compressed_flexed_wall = int(input("Comp-flex wall: "))
+    n_cant_comp      = int(input("Comp wall: "))
+    n_cant_comp_flex = int(input("Comp-flex: "))
     print("Internal walls")
-    number_of_internal_compressed_wall = int(input("Comp. wall: "))
-    number_of_internal_flexed_wall = int(input("Flex wall: "))
-    number_of_internal_compressed_flexed_wall = int(input("Comp-flex wall: "))
+    n_int_comp       = int(input("Comp wall: "))
+    n_int_flex       = int(input("Flex wall: "))
+    n_int_comp_flex  = int(input("Comp-flex: "))
+    fy               = float(input("fy: "))
 
-    fy = float(input("fy: "))
     if fy not in epsilon:
         print("fy:", list(epsilon.keys()))
-    else:
+        return None
 
-        classification_results = []
+    e       = epsilon[fy]
+    results = []
 
-        for i in range(number_of_cantilevered_compressed_wall):
-            print("Cant. comp wall:", i+1)
-            classification_results.append(cantilevered_compressed_wall(epsilon[fy]))
-        for i in range(number_of_cantilevered_compressed_flexed_wall):
-            print("Cant. comp-flex:", i+1)
-            classification_results.append(cantilevered_compressed_flexed_wall(epsilon[fy]))
-        for i in range(number_of_internal_compressed_wall):
-            print("Int. comp wall:", i+1)
-            classification_results.append(internal_compressed_wall(epsilon[fy]))
-        for i in range(number_of_internal_flexed_wall):
-            print("Int. flex wall:", i+1)
-            classification_results.append(internal_flexed_wall(epsilon[fy]))
-        for i in range(number_of_internal_compressed_flexed_wall):
-            print("Int. comp-flex:", i+1)
-            classification_results.append(internal_compressed_flexed_wall(epsilon[fy]))
+    walls = [
+        (n_cant_comp,      "Cant comp",      cantilevered_compressed_wall),
+        (n_cant_comp_flex, "Cant comp-flex", cantilevered_compressed_flexed_wall),
+        (n_int_comp,       "Int comp",       internal_compressed_wall),
+        (n_int_flex,       "Int flex",       internal_flexed_wall),
+        (n_int_comp_flex,  "Int comp-flex",  internal_compressed_flexed_wall),
+    ]
 
-        print("Section class:", max(classification_results))
+    for n, label, fn in walls:
+        for i in range(n):
+            print(f"{label} {i + 1}")
+            results.append(fn(e))
+
+    c = max(results)
+    print(f"Section class {c}")
+    return c

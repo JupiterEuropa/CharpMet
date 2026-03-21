@@ -1,37 +1,30 @@
-from Func_Chap4.Classes import *
-from Func_Chap4.Corner import *
-from Func_Chap4.CritSig import *
-from Func_Chap4.KSig import *
-from Func_Chap4.Tube import *
-from Func_Chap4.section_class_function import *
+from Func_Chap4.Classes   import classify_section
+from Func_Chap4.Corner    import classify_corner
+from Func_Chap4.CritSig   import critical_sigma
+from Func_Chap4.KSig      import k_sigma
+from Func_Chap4.Tube      import classify_tube
+
+MENU = {
+    1: ("Critical Sigma",    critical_sigma),
+    2: ("K Sigma",           k_sigma),
+    3: ("Classify Section",  classify_section),
+    4: ("Classify Corner",   classify_corner),
+    5: ("Classify Tube",     classify_tube),
+}
 
 print("Choose a function:")
 while True:
-    
-    print("1. Critical Sigma")
-    print("2. K Sigma")
-    print("3. Classify Section")
-    print("4. Classify Corner")
-    print("5. Classify Tube")
-    choice = int(input("Your choice: "))
+    for k, (label, _) in MENU.items():
+        print(f"{k}. {label}")
 
-    if choice == 1:
-        critical_sigma()
-        break
-    elif choice == 2:
-        k_sigma()
-        break
-    elif choice == 3:
-        classify_section()
-        break
-    elif choice == 4:
-        classify_corner()
-        break
-    elif choice == 5:
-        classify_tube()
+    try:
+        choice = int(input("Choice (1-5): "))
+    except ValueError:
+        print("Enter 1-5")
+        continue
+
+    if choice in MENU:
+        MENU[choice][1]()
         break
     else:
-        print("Invalid")
         print("Enter 1-5")
-        input("Any key to continue...")
-        continue

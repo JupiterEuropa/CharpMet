@@ -1,26 +1,25 @@
 from constant import epsilon2
+
 def classify_tube():
-    d = float(input("d :"))
-    t = float(input("t :"))
-    fy= float(input("fy: "))
+    d  = float(input("d : "))
+    t  = float(input("t : "))
+    fy = float(input("fy: "))
 
     if d <= 0 or t <= 0 or fy not in epsilon2:
-        print("d,t > 0")
+        print("d, t > 0")
         print("fy:", list(epsilon2.keys()))
         return None
 
-    d_over_t = d/t
+    r = d / t
+    e = epsilon2[fy]
 
-    if d_over_t <= 50*epsilon2[235]:
-        print("This section is of class 1")
-        return 1
-    elif d_over_t <= 70*epsilon2[235]:
-        print("This section is of class 2")
-        return 2
-    elif d_over_t <= 90*epsilon2[235]:
-        print("This section is of class 3")
-        return 3
+    if   r <= 50 * e: c = 1
+    elif r <= 70 * e: c = 2
+    elif r <= 90 * e: c = 3
     else:
-        print("This section may be of class 4")
+        print("Class 4")
         print("cfr: EN 1993-1-6")
         return 4
+
+    print(f"Class {c}")
+    return c
