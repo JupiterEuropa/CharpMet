@@ -4,17 +4,17 @@ from Func_Chap4.CritSig   import critical_sigma
 from Func_Chap4.KSig      import k_sigma
 from Func_Chap4.Tube      import classify_tube
 
-MENU = {
-    1: ("Critical Sigma",   critical_sigma),
-    2: ("K Sigma",          k_sigma),
-    3: ("Classify Section", classify_section),
-    4: ("Classify Corner",  classify_corner),
-    5: ("Classify Tube",    classify_tube),
-}
+MENU = [
+    (1, "Critical Sigma",   critical_sigma),
+    (2, "K Sigma",          k_sigma),
+    (3, "Classify Section", classify_section),
+    (4, "Classify Corner",  classify_corner),
+    (5, "Classify Tube",    classify_tube),
+]
 
 print("Choose a function:")
 while True:
-    for k, (label, _) in MENU.items():
+    for k, label, _ in MENU:
         print("{}: {}".format(k, label))
 
     try:
@@ -23,8 +23,9 @@ while True:
         print("Enter 1-5")
         continue
 
-    if choice in MENU:
-        MENU[choice][1]()
+    fn = next((f for k, _, f in MENU if k == choice), None)
+    if fn:
+        fn()
         break
     else:
         print("Enter 1-5")
