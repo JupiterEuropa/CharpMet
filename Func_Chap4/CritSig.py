@@ -1,10 +1,9 @@
 from .KSig import k_sigma
 from math import pi
+from constant import E, nu
 
 def critical_sigma():
     print("critical_sigma")
-    E  = 210000  # MPa
-    nu = 0.3
 
     t = float(input("t: "))
     b = float(input("b: "))
