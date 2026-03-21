@@ -1,49 +1,38 @@
-from Func_Chap5.V_pl_Rd import *
-from Func_Chap5.Int_M_V import *
-from Func_Chap5.Flexion import *
-from Func_Chap5.Traction import *
-from Func_Chap5.Compression import *
-from Func_Chap5.Int_M_M import *
-from Func_Chap5.Int_M_N import *
-from Func_Chap5.Int_M_M_N import *
-from Func_Chap5.Int_M_N_V import *
+from Func_Chap5.V_pl_Rd  import V_pl_Rd
+from Func_Chap5.Int_M_V  import Int_M_V
+from Func_Chap5.Flexion  import M_Rd
+from Func_Chap5.Traction import N_pl_Rd
+from Func_Chap5.Compression  import N_c_Rd
+from Func_Chap5.Int_M_M  import Int_M_M
+from Func_Chap5.Int_M_N  import Int_M_N
+from Func_Chap5.Int_M_M_N import Int_M_M_N
+from Func_Chap5.Int_M_M_N_V import Int_M_M_N_V
+
+MENU = {
+    1: ("Traction",       N_pl_Rd),
+    2: ("Compression",    N_c_Rd),
+    3: ("Flexion",        M_Rd),
+    4: ("Shear",          V_pl_Rd),
+    5: ("Int M-V",        Int_M_V),
+    6: ("Int M-M",        Int_M_M),
+    7: ("Int M-N",        Int_M_N),
+    8: ("Int M-M-N",      Int_M_M_N),
+    9: ("Int M-N-V",      Int_M_M_N_V),
+}
 
 print("Choose a function:")
 while True:
-    
-    print("1: Traction")
-    print("2: Compression")
-    print("3: Flexion")
-    print("4: Shear")
-    print("5: Interaction M-V")
-    print("6: Interaction M-M")
-    print("7: Interaction M-N")
-    print("8: Interaction M-M-N")
-    print("9: Interaction M-N-V")
-    choice = int(input("Choice: "))
+    for k, (label, _) in MENU.items():
+        print(f"{k}: {label}")
 
-    if choice == 1:
-        N_pl_Rd()
-    elif choice == 2:
-        N_c_Rd()
-    elif choice == 3:
-        M_Rd
-    elif choice == 4:
-        V_pl_Rd()
-        break
-    elif choice == 5:
-        Int_M_V()
-        break
-    elif choice ==6:
-        Int_M_M()
-    elif choice ==7:
-        Int_M_N()
-    elif choice ==8:
-        Int_M_M_N()
-    elif choice ==9:
-        Int_M_N_V()
-    else:
-        print("Invalid")
+    try:
+        choice = int(input("Choice (1-9): "))
+    except ValueError:
         print("Enter 1-9")
-        input("Any key to continue...")
         continue
+
+    if choice in MENU:
+        MENU[choice][1]()
+        break
+    else:
+        print("Enter 1-9")

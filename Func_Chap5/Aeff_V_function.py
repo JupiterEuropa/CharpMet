@@ -1,143 +1,100 @@
-import math
+from math import pi
 
-def Rolled_I_H_Shear_Parallel_Web(A = None, h = None, b = None, t_f = None, t_w = None, r = None):
-    print("I/H, Shear // Web")
-    if A is None:
-        A = float(input("Area (A): "))
-    if h is None:
-        h = float(input("h: "))
-    if b is None:
-        b = float(input("b: "))
-    if t_f is None:
-        t_f = float(input("t_f: "))
-    if t_w is None:
-        t_w = float(input("t_w: "))
-    if r is None:
-        r = float(input("r: "))
-    A_V = max(A - 2*b*t_f + (t_w + 2*r)*t_f, (h-2*t_f)*t_w)
-    print("Shear Area :", A_V)
+def Rolled_I_H_Shear_Parallel_Web(A=None, h=None, b=None, t_f=None, t_w=None, r=None):
+    print("I/H Rolled // Web")
+    if A   is None: A   = float(input("A: "))
+    if h   is None: h   = float(input("h: "))
+    if b   is None: b   = float(input("b: "))
+    if t_f is None: t_f = float(input("t_f: "))
+    if t_w is None: t_w = float(input("t_w: "))
+    if r   is None: r   = float(input("r: "))
+    A_V = max(A - 2*b*t_f + (t_w + 2*r)*t_f, (h - 2*t_f)*t_w)
+    print(f"Shear A: {A_V:.4g}")
     return A_V
 
-def Welded_I_H_Shear_Parallel_Web(h_w = None, t_w = None, number_of_webs = None):
+def Welded_I_H_Shear_Parallel_Web(h_w=None, t_w=None, number_of_webs=None):
+    print("I/H Welded // Web")
     A_w = 0
-    print("I/H Welded,")
-    print("Shear // Web")
     if h_w is None or t_w is None or number_of_webs is None:
-        number_of_webs = int(input("Number of webs: "))
-        
+        number_of_webs = int(input("Num webs: "))
         for i in range(number_of_webs):
-            print("Web", i+1)
-            h_w = float(input("Height (h_w): "))
-            t_w = float(input("Thickness: "))
-            A_w = A_w + h_w * t_w
+            print(f"Web {i + 1}")
+            h_w = float(input("h_w: "))
+            t_w = float(input("t_w: "))
+            A_w += h_w * t_w
     else:
-        A_w = A_w + h_w * t_w
-    print("Shear Area :", A_w)
+        A_w = h_w * t_w
+    print(f"Shear A: {A_w:.4g}")
     return A_w
 
-def Rolled_I_H_Shear_Perpendicular_Web(b = None, t_f = None, t_w = None, r = None):
-    print("I/H, Shear T Web")
-    print("Enter dimensions:")
-    if b is None:
-        b = float(input("Flange (b): "))
-    if t_f is None:
-        t_f = float(input("Flange thick: "))
-    if t_w is None:
-        t_w = float(input("Web thick: "))
-    if r is None:
-        r = float(input("Radius (r): "))
-    
+def Rolled_I_H_Shear_Perpendicular_Web(b=None, t_f=None, t_w=None, r=None):
+    print("I/H Rolled T Web")
+    if b   is None: b   = float(input("b: "))
+    if t_f is None: t_f = float(input("t_f: "))
+    if t_w is None: t_w = float(input("t_w: "))
+    if r   is None: r   = float(input("r: "))
     A_V = 2*b*t_f + (t_w + r)*t_w
-    print("Shear Area :", A_V)
+    print(f"Shear A: {A_V:.4g}")
     return A_V
 
-def Welded_I_H_Shear_Perpendicular_Web(A = None, h_w = None, t_w = None, number_of_webs = None):
+def Welded_I_H_Shear_Perpendicular_Web(A=None, h_w=None, t_w=None, number_of_webs=None):
+    print("I/H Welded T Web")
     A_w = 0
-    print("I/H Welded,")
-    print("Shear T Web")
     if A is None or h_w is None or t_w is None or number_of_webs is None:
-        A = float(input("Area (A): "))
-        number_of_webs = int(input("Number of webs: "))
-        
+        A              = float(input("A: "))
+        number_of_webs = int(input("Num webs: "))
         for i in range(number_of_webs):
-            print("Web", i+1)
-            h_w = float(input("Height (h_w): "))
-            t_w = float(input("Thickness: "))
-            A_w = A_w + t_w * h_w
+            print(f"Web {i + 1}")
+            h_w  = float(input("h_w: "))
+            t_w  = float(input("t_w: "))
+            A_w += h_w * t_w
     else:
-        A_w = t_w * h_w
+        A_w = h_w * t_w
     A_V = A - A_w
-    print("Shear Area :", A - A_V)
+    print(f"Shear A: {A_V:.4g}")
     return A_V
 
-def Rolled_U_Shear_Parallel_Web(A = None, b = None, t_f = None, t_w = None, r = None):
-    print("U, Shear // Web")
-    print("Enter dimensions:")
-    if A is None:
-        A = float(input("Area (A): "))
-    if b is None:
-        b = float(input("Flange (b): "))
-    if t_f is None:
-        t_f = float(input("Flange thick: "))
-    if t_w is None:
-        t_w = float(input("Web thick: "))
-    if r is None:
-        r = float(input("Radius (r): "))
-    
-    A_V = A - 2*b*t_f + (t_w +r)*t_f
-    print("Shear Area :", A_V)
+def Rolled_U_Shear_Parallel_Web(A=None, b=None, t_f=None, t_w=None, r=None):
+    print("U Rolled // Web")
+    if A   is None: A   = float(input("A: "))
+    if b   is None: b   = float(input("b: "))
+    if t_f is None: t_f = float(input("t_f: "))
+    if t_w is None: t_w = float(input("t_w: "))
+    if r   is None: r   = float(input("r: "))
+    A_V = A - 2*b*t_f + (t_w + r)*t_f
+    print(f"Shear A: {A_V:.4g}")
     return A_V
 
-def Rolled_T_Shear_Parallel_Web(A = None, b = None, t_f = None):
-    print("T, Shear // Web")
-    print("Enter dimensions:")
-    if A is None:
-        A = float(input("Area (A): "))
-    if b is None:
-        b = float(input("Flange (b): "))
-    if t_f is None:
-        t_f = float(input("Flange thick: "))
-    
-    A_V = 0.9*(A - b*t_f)
-    print("Shear Area :", A_V)
+def Rolled_T_Shear_Parallel_Web(A=None, b=None, t_f=None):
+    print("T Rolled // Web")
+    if A   is None: A   = float(input("A: "))
+    if b   is None: b   = float(input("b: "))
+    if t_f is None: t_f = float(input("t_f: "))
+    A_V = 0.9 * (A - b*t_f)
+    print(f"Shear A: {A_V:.4g}")
     return A_V
 
-def Rolled_Rectangular_Shear_Parallel_Web(A = None, h = None, b = None):
-    print("Rectangular,")
-    print("Shear // Web")
-    print("Enter dimensions:")
-    if A is None:
-        A = float(input("Area (A): "))
-    if h is None:
-        h = float(input("Height (h): "))
-    if b is None:
-        b = float(input("Width (b): "))
-    
-    A_V = A*h/(b+h)
-    print("Shear Area :", A_V)
+def Rolled_Rectangular_Shear_Parallel_Web(A=None, h=None, b=None):
+    print("Rect // Web")
+    if A is None: A = float(input("A: "))
+    if h is None: h = float(input("h: "))
+    if b is None: b = float(input("b: "))
+    A_V = A * h / (b + h)
+    print(f"Shear A: {A_V:.4g}")
     return A_V
 
-def Rolled_Rectangular_Shear_Perpendicular_Web(A = None, h = None, b = None):
-    print("Rectangular,")
-    print("Shear T Web")
-    print("Enter dimensions:")
-    if A is None:
-        A = float(input("Area (A): "))
-    if h is None:
-        h = float(input("Height (h): "))
-    if b is None:
-        b = float(input("Width (b): "))
-    
-    A_V = A*b/(b+h)
-    print("Shear Area :", A_V)
+def Rolled_Rectangular_Shear_Perpendicular_Web(A=None, h=None, b=None):
+    print("Rect T Web")
+    if A is None: A = float(input("A: "))
+    if h is None: h = float(input("h: "))
+    if b is None: b = float(input("b: "))
+    A_V = A * b / (b + h)
+    print(f"Shear A: {A_V:.4g}")
     return A_V
 
-def Tube_Shear(A = None):
-    print("Tube, Shear")
-    print("Enter dimensions:")
-    if A is None:
-        A = float(input("Area (A): "))
-
-    A_V = 2*A/math.pi
-    print("Shear Area :", A_V)
+def Tube_Shear(A=None):
+    print("Tube Shear")
+    if A is None: A = float(input("A: "))
+    A_V = 2 * A / pi
+    print(f"Shear A: {A_V:.4g}")
     return A_V
