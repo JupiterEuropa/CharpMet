@@ -22,18 +22,31 @@ def _alpha():
 
 def N_b_Rd():
     print("N_b,Rd Calc")
-    fy = float(input("fy: "))
-    A  = float(input("A: "))
-    I  = float(input("I: "))
+    fy  = float(input("fy: "))
+    A   = float(input("A: "))
+    I   = float(input("I: "))
+    N_Ed = float(input("N_Ed: "))
 
     L_fl = Lfl(I=I)
-    a    = _alpha()
+    N_cr = 0  # computed below after L_fl is known
+
+    from math import pi
+    from constant import E
+    N_cr = pi**2 * E * I / L_fl**2
 
     i          = sqrt(I / A)
     lambda_1   = 93.9 * epsilon[fy]
     lmbda      = L_fl / i
     lambda_red = lmbda / lambda_1
 
+    # EC3 §6.3.1: no buckling check needed if conditions are met
+    if lambda_red <= 0.2 or N_Ed / N_cr <= 0.04:
+        print("No buckling check")
+        N_b_rd = A * fy / gamma_M[1]
+        print("N_b,Rd = {:.4g}".format(N_b_rd))
+        return N_b_rd
+
+    a   = _alpha()
     phi = (1 + a * (lambda_red - 0.2) + lambda_red**2) / 2
     khi = min(1.0, 1 / (phi + sqrt(phi**2 - lambda_red**2)))
 

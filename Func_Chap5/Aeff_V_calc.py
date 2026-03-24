@@ -1,4 +1,4 @@
-from .Aeff_V_function import (
+from Aeff_V_function import (
     Rolled_I_H_Shear_Parallel_Web,
     Welded_I_H_Shear_Parallel_Web,
     Rolled_I_H_Shear_Perpendicular_Web,
@@ -41,3 +41,5 @@ def A_eff_V(A=None, b=None, t_f=None, t_w=None,
         if fn:
             return fn(), choice
         print("Enter 1-10")
+
+A_eff_V()

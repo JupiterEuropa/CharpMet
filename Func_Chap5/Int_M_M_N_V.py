@@ -25,53 +25,46 @@ def _ask_plastic():
     return input("Plastic/Elastic (1/0): ") == "1"
 
 
-def _M_V_Rd(rho, choice_section, fy, t_w, A_w, W_y_pl, W_z_pl):
+def _M_V_Rd_general(rho, fy, W):
+    """Shear-reduced moment for general / weak-axis: fyr = (1-rho)*fy."""
+    return (1 - rho) * fy * W / gamma_M[0]
+
+
+def _M_NV_Rd_IH_yy(W_pl, rho, A_w, t_w, N_Ed, fy):
+    """
+    EC3 §5.9 exact formula for I/H strong axis under M-N-V.
+
+    MNV,y,Rd = [Wpl - 1/(4tw) * (rho*Aw^2 + NEd^2/((1-rho)*(fy/gM0)^2))]
+               * fy/gM0
+
+    Valid only if NEd <= Aw * fyr / gM0  where fyr = (1-rho)*fy.
+    """
+    fyr    = (1 - rho) * fy
+    gM0    = gamma_M[0]
+    A_w_fyr = A_w * fyr / gM0
+
+    if N_Ed > A_w_fyr:
+        print("N_Ed > Aw*fyr/gM0")
+        print("Formula not applicable")
+        return None
+
     if rho == 0:
-        M_V_y = W_y_pl * fy / gamma_M[0]
-        M_V_z = W_z_pl * fy / gamma_M[0]
-        return M_V_y, M_V_z
-
-    if choice_section == 1:
-        M_V_y = (W_y_pl - rho * A_w**2 / (4 * t_w)) * fy / gamma_M[0]
+        # Simplifies to standard M-N formula base; caller handles N reduction
+        term = rho * A_w**2
     else:
-        M_V_y = (1 - rho) * fy * W_y_pl / gamma_M[0]
+        term = rho * A_w**2 + N_Ed**2 / ((1 - rho) * (fy / gM0)**2)
 
-    M_V_z = (1 - rho) * fy * W_z_pl / gamma_M[0]
-
-    print("M_V,y,Rd = {:.4g}".format(M_V_y))
-    print("M_V,z,Rd = {:.4g}".format(M_V_z))
-    return M_V_y, M_V_z
-
-
-def _M_N_V_Rd(choice_section, n, a, a_w, a_f,
-              M_V_y, M_V_z, N_Ed, A_w, fy, t_w):
-    if choice_section == 1:
-        if n <= 0.25 and N_Ed <= 0.5 * A_w * fy / gamma_M[0]:
-            M_NV_y = M_V_y
-        else:
-            M_NV_y = M_V_y * min((1 - n) / (1 - a/2), 1)
-
-        if n <= 0.5 and N_Ed <= A_w * fy / gamma_M[0]:
-            M_NV_z = M_V_z
-        elif n <= a:
-            M_NV_z = M_V_z
-        else:
-            M_NV_z = M_V_z * (1 - ((n - a) / (1 - a))**2)
-
-    elif choice_section == 2:
-        M_NV_y = M_V_y * min((1 - n) / (1 - a_w/2), 1)
-        M_NV_z = M_V_z * min((1 - n) / (1 - a_w/2), 1)
-
-    else:
-        M_NV_y = M_V_y * min((1 - n) / (1 - a_w/2), 1)
-        M_NV_z = M_V_z * min((1 - n) / (1 - a_f/2), 1)
-
-    print("M_NV,y,Rd = {:.4g}".format(M_NV_y))
-    print("M_NV,z,Rd = {:.4g}".format(M_NV_z))
-    return M_NV_y, M_NV_z
+    M_NV_Rd = (W_pl - term / (4 * t_w)) * fy / gM0
+    return M_NV_Rd
 
 
 def Int_M_M_N_V():
+    """
+    EC3 §5.9 — M-M-N-V interaction for class 1/2 sections.
+
+    For I/H strong axis: exact §5.9 formula.
+    For weak axis and other sections: two-step (shear then N reduction).
+    """
     print("Int M-M-N-V")
 
     M_y_Ed = abs(float(input("M_y_Ed (0=tbd): ")))
@@ -110,6 +103,7 @@ def Int_M_M_N_V():
     else:
         V_pl_rd, _ = V_pl_Rd(t_w=t_w, fy=fy)
 
+    # --- rho ---
     if V_Ed > V_pl_rd / 2:
         rho = (2 * V_Ed / V_pl_rd - 1) ** 2
         print("rho = {:.4g}".format(rho))
@@ -123,14 +117,40 @@ def Int_M_M_N_V():
     N_pl_rd = N_pl_Rd(A=A, fy=fy)
     n       = N_Ed / N_pl_rd
     a       = min(1 - 2*b*t_f / A, 0.5)
-    a_w     = min(A_w / A, 0.5)
+    a_w     = min(A_w / A, 0.5) if A_w else 0
     a_f     = min(1 - 2*h*t_w / A, 0.5) if h else a
 
-    M_V_y, M_V_z = _M_V_Rd(rho, choice_section, fy, t_w, A_w, W_y_pl, W_z_pl)
+    # --- Strong axis: exact §5.9 formula for I/H ---
+    if choice_section == 1:
+        M_NV_y = _M_NV_Rd_IH_yy(W_y_pl, rho, A_w, t_w, N_Ed, fy)
+        if M_NV_y is None:
+            return None
+        # Weak axis: shear reduces fyr, then apply N reduction
+        M_V_z  = _M_V_Rd_general(rho, fy, W_z_pl)
+        if n <= 0.5 and N_Ed <= A_w * fy / gamma_M[0]:
+            M_NV_z = M_V_z
+        elif n <= a:
+            M_NV_z = M_V_z
+        else:
+            M_NV_z = M_V_z * (1 - ((n - a) / (1 - a))**2)
 
-    M_NV_y, M_NV_z = _M_N_V_Rd(choice_section, n, a, a_w, a_f,
-                                M_V_y, M_V_z, N_Ed, A_w, fy, t_w)
+    elif choice_section == 2:  # Tube
+        M_V_y  = _M_V_Rd_general(rho, fy, W_y_pl)
+        M_V_z  = _M_V_Rd_general(rho, fy, W_z_pl)
+        M_NV_y = M_V_y * min((1 - n) / (1 - a_w/2), 1)
+        M_NV_z = M_V_z * min((1 - n) / (1 - a_w/2), 1)
 
+    else:  # Rect
+        M_V_y  = _M_V_Rd_general(rho, fy, W_y_pl)
+        M_V_z  = _M_V_Rd_general(rho, fy, W_z_pl)
+        M_NV_y = M_V_y * min((1 - n) / (1 - a_w/2), 1)
+        M_NV_z = M_V_z * min((1 - n) / (1 - a_f/2), 1)
+
+    M_NV_y = min(M_NV_y, W_y_pl * fy / gamma_M[0])
+    print("M_NV,y,Rd = {:.4g}".format(M_NV_y))
+    print("M_NV,z,Rd = {:.4g}".format(M_NV_z))
+
+    # --- Biaxial exponents ---
     if choice_section == 1:
         alpha = 2
         beta  = max(1, 5*n)
@@ -140,6 +160,7 @@ def Int_M_M_N_V():
         alpha = min(6, 1.66 / (1 - 1.13*n**2))
         beta  = alpha
 
+    # --- Check or solve ---
     if M_y_Ed != 0 and M_z_Ed != 0:
         UC = (M_y_Ed / M_NV_y)**alpha + (M_z_Ed / M_NV_z)**beta
         print("UC = {:.4g}".format(UC))

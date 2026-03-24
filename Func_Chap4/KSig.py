@@ -15,7 +15,7 @@ def k_sigma():
 
     if case == 1:
         if   psi >= 1:  ks = 4.0
-        elif psi >  0:  ks = 8.02 / (1 + psi)
+        elif psi >  0:  ks = 8.02 / (1.05 + psi)
         elif psi > -1:  ks = 7.81 - 6.29*psi + 9.78*psi**2
         else:           ks = 23.9
 
