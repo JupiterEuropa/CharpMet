@@ -1,6 +1,6 @@
 from math import sqrt, pi
 from constant import gamma_M, epsilon, eta
-from .Aeff_V_calc import A_eff_V
+from .Aeff_V import A_eff_V
 
 def V_pl_Rd(A=None, b=None, t_f=None, t_w=None,
             h=None, h_w=None, r=None, number_of_webs=None, fy=None):

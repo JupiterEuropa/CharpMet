@@ -6,7 +6,7 @@ from .Aw import A_w_I_H
 
 def _ask_section_type():
     print("Section type:")
-    print("0: General")
+    print("0: General/Inverse")
     print("1: I (y-y)")
     print("2: H (y-y)")
     while True:
@@ -23,7 +23,8 @@ def _ask_plastic():
 def Int_M_V():
     print("M-V Interaction")
 
-    V_Ed = float(input("V_Ed (0=inverse): "))
+    V_Ed = float(input("V_Ed (0=tbd): "))
+    M_V_rd = float(input("M_V,Rd (0=tbd): "))
     fy   = float(input("fy: "))
     t_w  = float(input("t_w: "))
 

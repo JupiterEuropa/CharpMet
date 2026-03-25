@@ -1,4 +1,5 @@
 from .Flexion_function import M_pl_Rd
+from constant import gamma_M
 
 def Int_M_M_cl1_cl2(fy=None, W_y_pl=None, W_z_pl=None,
                     M_y_Ed=None, M_z_Ed=None, choice_section=None):
@@ -44,3 +45,31 @@ def Int_M_M_cl1_cl2(fy=None, W_y_pl=None, W_z_pl=None,
         M_z_Ed = (1 - (M_y_Ed / M_pl_y_rd)**alpha)**(1/beta) * M_pl_z_rd
         print("M_z,Ed = {:.4g}".format(M_z_Ed))
         return M_z_Ed
+
+def Int_M_M_cl3():
+    print("Int M-M cl3")    
+
+    while True:
+        
+        M_y_Ed = float(input("M_y_Ed: (0=tbd)"))
+        M_z_Ed = float(input("M_z_Ed: (0=tbd)"))
+
+        if M_y_Ed == 0 and M_z_Ed == 0:
+            print("Both moments = 0")
+        else:
+            break
+
+    
+    W_el_y = float(input("W_el_y: "))
+    W_el_z = float(input("W_el_z: "))
+    fy     = float(input("fy: "))
+
+    if M_y_Ed == 0:
+        M_z_Ed = (fy/gamma_M[0] - (M_y_Ed / W_el_y )) * W_el_z
+        print("M_z,Ed = {:.4g}".format(M_z_Ed))
+        return M_z_Ed
+    else:
+        M_y_Ed = (fy/gamma_M[0] - (M_z_Ed / W_el_z )) * W_el_y
+        print("M_y,Ed = {:.4g}".format(M_y_Ed))
+        return M_y_Ed
+    

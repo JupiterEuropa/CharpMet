@@ -75,45 +75,27 @@ def Int_M_M_N_cl1_cl2():
         print("M_z,Ed = {:.4g}".format(M_z_Ed))
 
 
-def Int_M_M_N_cl3(mode_MM=False, mode_MN=False):
-    if mode_MM:
-        print("Int M-M cl3")
-    elif mode_MN:
-        print("Int M-N cl3")
-    else:
-        print("Int M-M-N cl3")
+def Int_M_M_N_cl3():
+    print("Int M-M-N cl3")
 
     while True:
-        N_Ed = 0.0 if mode_MM else float(input("N_Ed: "))
+        M_y_Ed = float(input("M_y_Ed: "))
+        M_z_Ed = float(input("M_z_Ed: "))
+        N_Ed = float(input("N_Ed: "))
 
-        if mode_MN:
-            M_y_Ed = float(input("M_Ed: "))
-            M_z_Ed = 0.0
-        else:
-            M_y_Ed = float(input("M_y_Ed: "))
-            M_z_Ed = float(input("M_z_Ed: "))
+        if (M_y_Ed == 0 and M_z_Ed == 0) or N_Ed == 0:
+            print("Moments or N_Ed = 0")
+            continue
+        else: break
 
-        zeros = [N_Ed, M_y_Ed, M_z_Ed].count(0.0)
-        if mode_MM and M_y_Ed == 0 and M_z_Ed == 0:
-            print("Both moments = 0")
-        elif mode_MN and N_Ed == 0 and M_y_Ed == 0:
-            print("M_Ed and N_Ed = 0")
-        elif not mode_MM and not mode_MN and zeros >= 2:
-            print("2+ vars are 0")
-        else:
-            break
-
-    A      = 1.0 if mode_MM else float(input("A: "))
-    W_el_y = float(input("W_el: " if mode_MN else "W_el_y: "))
-    W_el_z = 1.0 if mode_MN else float(input("W_el_z: "))
+    A      = float(input("A: "))
+    W_el_y = float(input("W_el_y: "))
+    W_el_z = float(input("W_el_z: "))
     fy     = float(input("fy: "))
 
-    if N_Ed == 0 and not mode_MM:
-        N_Ed = (fy - M_z_Ed / W_el_z - M_y_Ed / W_el_y) * A
-        print("N_Ed = {:.4g}".format(N_Ed))
-    elif M_y_Ed == 0:
+    if M_y_Ed == 0:
         M_y_Ed = (fy - N_Ed / A - M_z_Ed / W_el_z) * W_el_y
         print("M_y,Ed = {:.4g}".format(M_y_Ed))
-    elif M_z_Ed == 0 and not mode_MN:
+    else:
         M_z_Ed = (fy - N_Ed / A - M_y_Ed / W_el_y) * W_el_z
         print("M_z,Ed = {:.4g}".format(M_z_Ed))

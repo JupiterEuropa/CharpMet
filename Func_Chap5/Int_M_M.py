@@ -1,5 +1,4 @@
-from .Int_M_M_function import Int_M_M_cl1_cl2
-from .Int_M_M_N_function import Int_M_M_N_cl3
+from .Int_M_M_function import Int_M_M_cl1_cl2, Int_M_M_cl3
 
 def Int_M_M():
     print("Int M-M Calc")
@@ -14,7 +13,7 @@ def Int_M_M():
             Int_M_M_cl1_cl2()
             break
         elif choice_class == 3:
-            Int_M_M_N_cl3(mode_MM=True)
+            Int_M_M_cl3()
             break
         else:
             print("Enter 1-3")
