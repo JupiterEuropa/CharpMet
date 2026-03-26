@@ -1,5 +1,5 @@
 from math import sqrt
-from .N_cr import Ncr
+# from .N_cr import Ncr
 
 _BEAM_CHOICES = {
     1: ("Embed",       4),
@@ -32,12 +32,12 @@ def _beam_K(tag):
 
     coeff = _BEAM_CHOICES[choice][1]
 
-    if input("N in beam (1/0): ") == "1":
-        N     = float(input("N: "))
-        N_cr  = Ncr()
-        coeff_N = _N_coeff(choice, N, N_cr)
-    else:
-        coeff_N = 1.0
+    # if input("N in beam (1/0): ") == "1":
+    #     # N     = float(input("N: "))
+    #     # N_cr  = Ncr()
+    #     # coeff_N = _N_coeff(choice, N, N_cr)
+    # else:
+    coeff_N = 1.0
 
     return coeff * I / L * coeff_N
 
