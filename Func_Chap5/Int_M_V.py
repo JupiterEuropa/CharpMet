@@ -16,11 +16,8 @@ def _ask_section_type():
             print("Enter 0, 1 or 2")
 
 
-def _ask_plastic():
-    return input("Plastic/Elastic (1/0): ") == "1"
 
-
-def Int_M_V():
+def Int_M_V(): # M -V interaction only applies for plastic interaction, so no need to ask for elastic/plastic
     print("M-V Interaction")
     while True:
         V_Ed = float(input("V_Ed (0=tbd): "))
@@ -49,8 +46,7 @@ def Int_M_V():
         if choice not in (1, 2):
             fyr  = (1 - rho) * fy
             print("fyr = {:.4g}".format(fyr))
-            plastic = _ask_plastic()
-            W    = float(input("W_pl: " if plastic else "W_el: "))
+            W    = float(input("W_pl: " ))
             M_V_Rd = fyr * W / gamma_M[0]
             print("M_V,Rd = {:.4g}".format(M_V_Rd))
             return M_V_Rd
@@ -71,8 +67,7 @@ def Int_M_V():
         M_V_rd = float(input("M_V,Rd target: "))
 
         if choice not in (1, 2):
-            plastic = _ask_plastic()
-            W       = float(input("W_pl: " if plastic else "W_el: "))
+            W       = float(input("W_pl: "))
             V_Ed = ((1 - M_V_rd * gamma_M[0] / (fy * W))**0.5 + 1) * V_pl_rd / 2
 
         else:
@@ -86,8 +81,5 @@ def Int_M_V():
 
     else:
         print("V <= V_pl/2: no int.")
-        if _ask_plastic():
-            M_rd = M_pl_Rd(fy=fy)
-        else:
-            M_rd = M_el_Rd(fy=fy)
+        M_rd = M_pl_Rd(fy=fy)
         return M_rd
