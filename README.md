@@ -69,6 +69,15 @@ This project has been successfully tested on:
 
 This application is designed to work alongside the **formulaire (formula sheet)** provided in the course. 
 
+### Units
+
+All inputs and outputs use the following units:
+- **Forces**: N (Newtons)
+- **Dimensions**: mm (millimeters)
+- **Moments**: N·mm (Newton-millimeters)
+
+Please ensure your input values are converted to these units before running the calculations.
+
 ### Key Principle
 
 **Use the end functions directly** - You do not need to call intermediate functions. The program will automatically ask for and calculate all necessary intermediate values. 
