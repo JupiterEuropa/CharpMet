@@ -23,7 +23,12 @@ while True:
         print("Enter 1-5")
         continue
 
-    fn = next((f for k, _, f in MENU if k == choice), None)
+    fn = None
+    for k, _, f in MENU:
+        if k == choice:
+            fn = f
+            break
+    
     if fn:
         fn()
         break
