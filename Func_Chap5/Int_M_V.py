@@ -22,9 +22,13 @@ def _ask_plastic():
 
 def Int_M_V():
     print("M-V Interaction")
-
-    V_Ed = float(input("V_Ed (0=tbd): "))
-    M_V_rd = float(input("M_V,Rd (0=tbd): "))
+    while True:
+        V_Ed = float(input("V_Ed (0=tbd): "))
+        M_V_rd = float(input("M_V,Rd (0=tbd): "))
+        if V_Ed == 0 and M_V_rd == 0:
+            print("V_Ed, M_V,Rd both 0")
+        else:
+            break
     fy   = float(input("fy: "))
     t_w  = float(input("t_w: "))
 
@@ -33,7 +37,7 @@ def Int_M_V():
         V_pl_rd = float(input("V_pl,Rd: "))
         choice  = None
     else:
-        V_pl_rd, choice = V_pl_Rd(t_w=t_w, fy=fy)
+        V_pl_rd, choice, A_w = V_pl_Rd(t_w=t_w, fy=fy)
 
     if V_Ed > V_pl_rd / 2:
         print("V > V_pl/2: M reduced")

@@ -2,14 +2,14 @@ def A_w_I_H(A=None, A_w=None, b=None, t_f=None,
             h_w=None, t_w=None, welded_rolled=None):
 
     if A_w is None:
-        A_w = float(input("A_w known (0=no): "))
+        A_w = float(input("A_w known(0/1): "))
 
     if A_w != 0:
         print("A_w = {:.4g}".format(A_w))
         return A_w
 
     if welded_rolled is None:
-        welded_rolled = input("Welded/Rolled (1/0): ") == "1"
+        welded_rolled = input("Rolled/Welded (1/0): ") == "1"
 
     if welded_rolled:
         if A   is None: A   = float(input("A: "))
