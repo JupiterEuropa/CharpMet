@@ -99,10 +99,10 @@ python Chap_7.py  # Flexural member design
 
 Follow the on-screen prompts and refer to the formulaire for design parameters and reference values.
 
-## Standards Reference
+<!-- ## Standards Reference
 
 This application implements the design procedures from:
-- **EN 1993-1-1:2005** - Eurocode 3: Design of steel structures - Part 1-1: General rules and rules for buildings
+- **EN 1993-1-1:2005** - Eurocode 3: Design of steel structures - Part 1-1: General rules and rules for buildings -->
 
 ## Course Information
 
