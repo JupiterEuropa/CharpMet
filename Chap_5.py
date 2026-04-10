@@ -6,7 +6,6 @@ from Func_Chap5.Compression import N_c_Rd
 from Func_Chap5.Int_M_M     import Int_M_M
 from Func_Chap5.Int_M_N     import Int_M_N
 from Func_Chap5.Int_M_M_N   import Int_M_M_N
-from Func_Chap5.Int_M_M_N_V import Int_M_M_N_V
 
 MENU = [
     (1, "Tract",    N_pl_Rd),
@@ -17,7 +16,6 @@ MENU = [
     (6, "M-M",      Int_M_M),
     (7, "M-N",      Int_M_N),
     (8, "M-M-N",    Int_M_M_N),
-    (9, "M-M-N-V",  Int_M_M_N_V),
 ]
 
 print("Choose a function:")

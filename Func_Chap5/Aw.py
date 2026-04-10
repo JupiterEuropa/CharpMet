@@ -9,7 +9,9 @@ def A_w_I_H(A=None, A_w=None, b=None, t_f=None,
         return A_w
 
     if welded_rolled is None:
-        welded_rolled = input("Rolled/Welded (1/0): ") == "1"
+        print("0: Welded")
+        print("1: Rolled")        
+        welded_rolled = input("Choice: ") == "1"
 
     if welded_rolled:
         if A   is None: A   = float(input("A: "))

@@ -22,9 +22,9 @@ def V_pl_Rd(A=None, b=None, t_f=None, t_w=None,
         d0 = float(input("Hole diameter: "))
         n  = int(input("Num holes: "))
         area -= n * pi * (d0/2)**2
-        V_pl_rd = area * fy / sqrt(3) / gamma_M[2]
+        V_pl_rd = area * fy / sqrt(3) / gamma_M[2]*1e-3
     else:
-        V_pl_rd = area * fy / sqrt(3) / gamma_M[0]
+        V_pl_rd = area * fy / sqrt(3) / gamma_M[0]*1e-3
 
     print("V_pl,Rd = {:.4g}".format(V_pl_rd))
     return V_pl_rd, choice, area

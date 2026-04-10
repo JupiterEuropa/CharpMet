@@ -28,7 +28,7 @@ def Int_M_N_I_y_y_cl1_cl2(A=None, A_w=None, b=None, t_f=None, t_w=None,
     M_pl_rd = M_pl_Rd(fy=fy)
 
     if N_Ed == 0:
-        N_Ed = -N_pl_rd * (M_N_Rd / (M_pl_rd * (1 - a/2)) - 1)
+        N_Ed = -N_pl_rd * (M_N_Rd / M_pl_rd * (1 - a/2) - 1)
         print("N_Ed = {:.4g}".format(N_Ed))
         return N_Ed
     elif n > 0.25 or N_Ed > 0.5 * A_w * fy / gamma_M[0]:
@@ -66,6 +66,9 @@ def Int_M_N_I_z_z_cl1_cl2(A=None, A_w=None, b=None, t_f=None, t_w=None,
 
     if (n > 0.5 or N_Ed > A_w * fy / gamma_M[0]) and M_N_Rd == 0:
         if n <= a:
+            print("No M-N interaction")
+            print("n = {:.4f}".format(n))
+            print("a = {:.4f}".format(a))
             print("n<=a: M_N,Rd = {:.4g}".format(M_pl_rd))
             return M_pl_rd
         else:
@@ -166,17 +169,10 @@ def Int_M_N_cl3():
     fy     = float(input("fy: "))
 
     if N_Ed == 0:
-        N_Ed = (fy/gamma_M[0] - M_y_Ed / W_el_y) * A
+        N_Ed = (fy/gamma_M[0]*1e-3 - M_y_Ed / W_el_y * 1e3) * A
         print("N_Ed = {:.4g}".format(N_Ed))
         return N_Ed
     elif M_y_Ed == 0:
-        M_y_Ed = (fy/gamma_M[0] - N_Ed / A) * W_el_y
+        M_y_Ed = (fy/gamma_M[0]*1e-6 - N_Ed / A * 1e3) * W_el_y
         print("M_Ed = {:.4f}".format(M_y_Ed))
         return M_y_Ed
-    else:
-        test = N_Ed / A / (fy/gamma_M[0]) + M_y_Ed / W_el_y / (fy/gamma_M[0])
-        if test > 1:
-            print("Interaction failure: {:.4f} > 1".format(test))
-        else:
-            print("Interaction success: {:.4f} <= 1".format(test))
-        return test

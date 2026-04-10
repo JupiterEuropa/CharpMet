@@ -1,6 +1,7 @@
 from .Traction import N_pl_Rd
 from .Int_M_N import Int_M_N
 from .Aw import A_w_I_H
+from constant import gamma_M
 
 def Int_M_M_N_cl1_cl2():
     print("Int M-M-N cl1/cl2")
@@ -79,9 +80,9 @@ def Int_M_M_N_cl3():
     print("Int M-M-N cl3")
 
     while True:
-        M_y_Ed = float(input("M_y_Ed: "))
-        M_z_Ed = float(input("M_z_Ed: "))
-        N_Ed = float(input("N_Ed: "))
+        M_y_Ed = float(input("M_y_Ed: (0=tbd)"))
+        M_z_Ed = float(input("M_z_Ed: (0=tbd)"))
+        N_Ed = float(input("N_Ed: (0=tbd)"))
 
         if (M_y_Ed == 0 and M_z_Ed == 0) or N_Ed == 0:
             print("Moments or N_Ed = 0")
@@ -94,8 +95,11 @@ def Int_M_M_N_cl3():
     fy     = float(input("fy: "))
 
     if M_y_Ed == 0:
-        M_y_Ed = (fy - N_Ed / A - M_z_Ed / W_el_z) * W_el_y
+        M_y_Ed = (fy/gamma_M[0]*1e-6 - N_Ed / A * 1e-3 - M_z_Ed / W_el_z) * W_el_y
         print("M_y,Ed = {:.4g}".format(M_y_Ed))
-    else:
-        M_z_Ed = (fy - N_Ed / A - M_y_Ed / W_el_y) * W_el_z
+    elif M_z_Ed == 0:
+        M_z_Ed = (fy/gamma_M[0]*1e-6 - N_Ed / A * 1e-3 - M_y_Ed / W_el_y) * W_el_z
         print("M_z,Ed = {:.4g}".format(M_z_Ed))
+    else:
+        N_Ed = A * (fy/gamma_M[0]*1e-3 - M_y_Ed / W_el_y * 1e3 - M_z_Ed / W_el_z * 1e3)
+        print("N_Ed = {:.4g}".format(N_Ed))

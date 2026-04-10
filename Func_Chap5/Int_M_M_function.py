@@ -5,15 +5,15 @@ def Int_M_M_cl1_cl2(fy=None, W_y_pl=None, W_z_pl=None,
                     M_y_Ed=None, M_z_Ed=None, choice_section=None):
     print("Int M-M cl1/cl2")
 
-    flag = True
-    while flag:
+    while True:
         if M_y_Ed is None or M_y_Ed == 0:
             M_y_Ed = abs(float(input("M_y_Ed (0=tbd): ")))
         if M_z_Ed is None or M_z_Ed == 0:
             M_z_Ed = abs(float(input("M_z_Ed (0=tbd): ")))
-        flag = (M_y_Ed == 0 and M_z_Ed == 0)
-        if flag:
+        if M_y_Ed == 0 and M_z_Ed == 0:
             print("Both moments = 0")
+        else:
+            break
 
     if fy is None:
         fy = float(input("fy: "))
@@ -65,11 +65,11 @@ def Int_M_M_cl3():
     fy     = float(input("fy: "))
 
     if M_y_Ed == 0:
-        M_z_Ed = (fy/gamma_M[0] - (M_y_Ed / W_el_y )) * W_el_z
+        M_z_Ed = (fy/gamma_M[0]*1e-6 - (M_y_Ed / W_el_y )) * W_el_z
         print("M_z,Ed = {:.4g}".format(M_z_Ed))
         return M_z_Ed
     else:
-        M_y_Ed = (fy/gamma_M[0] - (M_z_Ed / W_el_z )) * W_el_y
+        M_y_Ed = (fy/gamma_M[0]*1e-6 - (M_z_Ed / W_el_z )) * W_el_y
         print("M_y,Ed = {:.4g}".format(M_y_Ed))
         return M_y_Ed
     
