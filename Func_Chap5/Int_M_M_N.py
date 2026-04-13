@@ -1,5 +1,3 @@
-from .Int_M_M_N_function import Int_M_M_N_cl1_cl2, Int_M_M_N_cl3
-
 def Int_M_M_N():
     print("Int M-M-N Calc")
     try:
@@ -9,6 +7,8 @@ def Int_M_M_N():
         return None
 
     if choice_class in (1, 2):
+        from .Int_M_M_N_function import Int_M_M_N_cl1_cl2
         Int_M_M_N_cl1_cl2()
     else:
+        from .Int_M_M_N_function import Int_M_M_N_cl3
         Int_M_M_N_cl3()

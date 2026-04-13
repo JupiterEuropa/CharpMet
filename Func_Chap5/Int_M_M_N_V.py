@@ -1,9 +1,5 @@
 from math import sqrt
 from constant import gamma_M
-from .V_pl_Rd import V_pl_Rd
-from .Aw import A_w_I_H
-from .Traction import N_pl_Rd
-from .Flexion_function import M_pl_Rd
 
 
 def _ask_section_type():
@@ -65,6 +61,10 @@ def Int_M_M_N_V():
     For I/H strong axis: exact §5.9 formula.
     For weak axis and other sections: two-step (shear then N reduction).
     """
+    from .V_pl_Rd import V_pl_Rd
+    from .Aw import A_w_I_H
+    from .Traction import N_pl_Rd
+    
     print("Int M-M-N-V")
 
     M_y_Ed = abs(float(input("M_y_Ed (0=tbd): ")))

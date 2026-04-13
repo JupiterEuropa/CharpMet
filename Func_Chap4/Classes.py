@@ -1,11 +1,4 @@
 from constant import epsilon
-from .section_class_function import (
-    cantilevered_compressed_wall,
-    cantilevered_compressed_flexed_wall,
-    internal_compressed_wall,
-    internal_flexed_wall,
-    internal_compressed_flexed_wall,
-)
 
 def classify_section():
     print("Cantilevered walls")
@@ -21,6 +14,14 @@ def classify_section():
         print("fy:", list(epsilon.keys()))
         return None
 
+    from .section_class_function import (
+        cantilevered_compressed_wall,
+        cantilevered_compressed_flexed_wall,
+        internal_compressed_wall,
+        internal_flexed_wall,
+        internal_compressed_flexed_wall,
+    )
+    
     e       = epsilon[fy]
     results = []
 

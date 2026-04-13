@@ -1,22 +1,3 @@
-from .V_pl_Rd import V_pl_Rd
-from constant import gamma_M
-from Func_Chap5.Flexion_function import M_pl_Rd, M_el_Rd
-from .Aw import A_w_I_H
-
-
-def _ask_section_type():
-    print("Section type:")
-    print("0: General/Inverse")
-    print("1: I (y-y)")
-    print("2: H (y-y)")
-    while True:
-        try:
-            return int(input("Choice: "))
-        except ValueError:
-            print("Enter 0, 1 or 2")
-
-
-
 def Int_M_V(): # M -V interaction only applies for plastic interaction, so no need to ask for elastic/plastic
     print("M-V Interaction")
     while True:
@@ -28,6 +9,11 @@ def Int_M_V(): # M -V interaction only applies for plastic interaction, so no ne
             break
     fy   = float(input("fy: "))
     t_w  = float(input("t_w: "))
+
+    from .V_pl_Rd import V_pl_Rd
+    from constant import gamma_M
+    from Func_Chap5.Flexion_function import M_pl_Rd, M_el_Rd
+    from .Aw import A_w_I_H
 
     known_V = input("V_pl,Rd known(1/0):") == "1"
     if known_V:

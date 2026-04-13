@@ -1,10 +1,10 @@
 from constant import epsilon
-from .section_class_function import (
-    cantilevered_compressed_wall,
-    cantilevered_compressed_flexed_wall,
-)
 
 def classify_corner():
+    from .section_class_function import (
+        cantilevered_compressed_wall,
+        cantilevered_compressed_flexed_wall,
+    )
     n_comp      = int(input("Comp wall: "))
     n_comp_flex = int(input("Comp-flex: "))
     fy          = float(input("fy: "))

@@ -1,15 +1,11 @@
-from Func_Chap6.N_cr       import Ncr
-from Func_Chap6.L_fl       import Lfl
-from Func_Chap6.M_buckling import N_b_Rd
-
 MENU = [
-    (0, "L_fl",   Lfl),
-    (1, "N_cr",   Ncr),
-    (2, "N_b,Rd", N_b_Rd),
+    (0, "L_fl"),
+    (1, "N_cr"),
+    (2, "N_b,Rd"),
 ]
 
 while True:
-    for k, label, _ in MENU:
+    for k, label in MENU:
         print("{}: {}".format(k, label))
 
     try:
@@ -18,14 +14,17 @@ while True:
         print("Enter 0-2")
         continue
 
-    fn = None
-    for k, _, f in MENU:
-        if k == choice:
-            fn = f
-            break
-    
-    if fn:
-        fn()
-        break
+    if choice == 0:
+        from Func_Chap6.L_fl import Lfl
+        Lfl()
+    elif choice == 1:
+        from Func_Chap6.N_cr import Ncr
+        Ncr()
+    elif choice == 2:
+        from Func_Chap6.M_buckling import N_b_Rd
+        N_b_Rd()
     else:
         print("Enter 0-2")
+        continue
+    
+    break

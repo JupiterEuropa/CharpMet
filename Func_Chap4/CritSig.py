@@ -1,9 +1,10 @@
 from math import pi
-from .KSig import k_sigma
 from constant import E
 
 def critical_sigma():
     print("critical_sigma")
+    from .KSig import k_sigma
+    
     nu = 0.3
 
     t = float(input("t: "))
