@@ -16,8 +16,9 @@ def _alpha():
                 print("alpha = {:.4g}".format(a))
                 return a
         except ValueError:
+            print("Enter 0-4")
             pass
-        print("Enter 0-4")
+        
 
 
 def N_b_Rd():
@@ -27,7 +28,10 @@ def N_b_Rd():
     I   = float(input("I: "))
     N_Ed = float(input("N_Ed: "))
 
-    L_fl = Lfl(I=I)
+    if bool(input("L_fl known (1/0): ")):
+        L_fl = float(input("L_fl: "))
+    else:
+        L_fl = Lfl(I=I)
     N_cr = 0  # computed below after L_fl is known
 
     from math import pi
