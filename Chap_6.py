@@ -21,7 +21,7 @@ while True:
         from Func_Chap6.N_cr import Ncr
         Ncr()
     elif choice == 2:
-        from Func_Chap6.M_buckling import N_b_Rd
+        from Func_Chap6.N_b_Rd import N_b_Rd
         N_b_Rd()
     else:
         print("Enter 0-2")

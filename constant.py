@@ -9,3 +9,11 @@ def eta(fy):
         return 1.2
     else:
         return 1.0
+    
+def lerp(x, x1, x2, y1, y2):
+    return y1 + (y2 - y1) * (x - x1) / (x2 - x1)
+
+def lerp_2d(x, y, x1, x2, y1, y2, z11, z12, z21, z22):
+    z_x1 = lerp(y, y1, y2, z11, z12)
+    z_x2 = lerp(y, y1, y2, z21, z22)
+    return lerp(x, x1, x2, z_x1, z_x2) 

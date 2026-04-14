@@ -113,6 +113,29 @@ Follow the on-screen prompts and refer to the formulaire for design parameters a
 This application implements the design procedures from:
 - **EN 1993-1-1:2005** - Eurocode 3: Design of steel structures - Part 1-1: General rules and rules for buildings -->
 
+## Update Progress
+
+| Module | Feature | Status |
+|--------|---------|--------|
+| **Chap 4** | Critical Sigma | ✅ Done |
+| | K Sigma | ✅ Done |
+| | Section Classification | ✅ Done |
+| | Corner Classification | ✅ Done |
+| | Tube Classification | ✅ Done |
+| **Chap 5** | Traction | ✅ Done |
+| | Compression | ✅ Done |
+| | Flexion | ✅ Done |
+| | Shear (V_pl,Rd) | ✅ Done |
+| | M+V Interaction | ✅ Done |
+| | M+M Interaction | ✅ Done |
+| | M+N Interaction | ✅ Done |
+| | M+M+N Interaction | ✅ Done |
+| | M+N+V Interaction | ❌ Not implemented|
+| **Chap 6** | L_fl | ✅ Done |
+| | N_cr | ✅ Done |
+| | N_b,Rd (Buckling) | ✅ Done |
+| **Chap 7** | M_cr | 🚧 WIP |
+
 ## Course Information
 
 - **Course**: Charpente Métallique (Steel Construction)
