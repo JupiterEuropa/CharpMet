@@ -35,6 +35,15 @@ This project implements key design criteria and calculations from Eurocode 3, en
   - Lateral-torsional buckling
   - Critical moment calculations
 
+- **Chap_8.py** - Connection Design
+  - Bolts preload (F_p,Cd)
+  - Corner bolted single web (N_u,Rd)
+  - Corner welded single web (N_pl,Rd / N_u,Rd)
+  - T/U single web
+  - Fastener resistance under shear and/or traction (bolts, rivets, diametral pressure, punching)
+  - Block shear
+  - Welds
+
 ### Supporting Files
 
 - **constant.py** - Material properties and design factors
@@ -42,6 +51,8 @@ This project implements key design criteria and calculations from Eurocode 3, en
   - Poisson's ratio (ν = 0.3)
   - Reduction factors for different steel grades
   - Safety factors (γ_M)
+
+- **Menu_Display.py** - Shared interactive menu utility (`printMenu`)
 
 ## Installation
 
@@ -51,7 +62,7 @@ This project implements key design criteria and calculations from Eurocode 3, en
 2. **Create a working folder** - Choose a location on your computer where you want to store the program (e.g., `C:\Users\YourName\Documents\CharpMet` or `~/Downloads/CharpMet`)
 3. **Copy all files** - Dump/extract the entire project into your chosen folder, ensuring the structure is preserved:
    - All `.py` files at the root level (Chap_4.py, Chap_5.py, etc.)
-   - All subfolders (Func_Chap4/, Func_Chap5/, Func_Chap6/, Func_Chap7/)
+   - All subfolders (Func_Chap4/, Func_Chap5/, Func_Chap6/, Func_Chap7/, Func_Chap8/)
 4. **Verify installation** - You should have all modules and supporting files in place
 
 ### Requirements
@@ -72,9 +83,11 @@ This application is designed to work alongside the **formulaire (formula sheet)*
 ### Units
 
 All inputs and outputs use the following units:
-- **Forces**: N (Newtons)
-- **Dimensions**: mm (millimeters)
-- **Moments**: N·mm (Newton-millimeters)
+- **Forces / Resistances**: kN
+- **Moments**: kN·m
+- **Dimensions**: mm
+- **Areas**: mm²
+- **Stresses / Elastic moduli**: MPa
 
 Please ensure your input values are converted to these units before running the calculations.
 
@@ -104,6 +117,7 @@ python Chap_4.py  # Section classification tools
 python Chap_5.py  # Section resistance calculations
 python Chap_6.py  # Member stability analysis
 python Chap_7.py  # Flexural member design
+python Chap_8.py  # Connection design
 ```
 
 Follow the on-screen prompts and refer to the formulaire for design parameters and reference values.
@@ -134,7 +148,22 @@ This application implements the design procedures from:
 | **Chap 6** | L_fl | ✅ Done |
 | | N_cr | ✅ Done |
 | | N_b,Rd (Buckling) | ✅ Done |
-| **Chap 7** | M_cr | 🚧 WIP |
+| **Chap 7** | M_cr | ✅ Done |
+| | M_b,Rd | ✅ Done |
+| **Chap 8** | F_p,Cd (Bolt preload) | ✅ Done |
+| | N_u,Rd — Corner bolted single web | ✅ Done |
+| | N_pl,Rd — Corner welded single web | ✅ Done |
+| | N_u,Rd — Corner welded single web | ✅ Done |
+| | N_pl,Rd — T/U single web | ✅ Done |
+| | N_u,Rd — T/U single web | ✅ Done |
+| | F_v,Rd Bolts / Rivets | ✅ Done |
+| | F_b,Rd (Diametral pressure) | ✅ Done |
+| | F_t,Rd Bolts / Rivets | ✅ Done |
+| | B_p,Rd (Punching) | ✅ Done |
+| | F_v+t,Rd (Shear + Traction) | ✅ Done |
+| | Block shear | ✅ Done |
+| | Welds | 🚧 WIP |
+| **Chap 9**| Future version| 📋 |
 
 ## Course Information
 

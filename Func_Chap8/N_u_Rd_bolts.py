@@ -36,4 +36,5 @@ def N_u_Rd_bolted():
 
     print("N_u,Rd = {:.4f}".format(N_u_Rd))
 
+    return N_u_Rd
     
