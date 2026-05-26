@@ -40,8 +40,7 @@ def F_v_Rd_Bolts(f_ub=None):
 
 def F_v_Rd_Rivets():
     from constant import gamma_M
-    if f_ur is None:
-        f_ur = float(input("f_ur: "))
+    f_ur = float(input("f_ur: "))
     A0 = float(input("A0: "))
 
     F_v_rd = 0.6 * f_ur * A0 / gamma_M[2] * 1e-3 # kN
@@ -59,17 +58,24 @@ def F_b_Rd():
     d0 = float(input("d0: "))
     d = float(input("d: "))
     t = float(input("t: "))
-    choice = int(input("Bolts: Internal(0) or End(1): "))
-    if choice == 0:
-        alpha_b = min(p1/3/d0 - 0.25, f_ub/fu, 1)
-        k1 = min(1.4 * p2/d0-1.7, 2.5)
-    elif choice == 1:
-        alpha_b = min(e1/3/d0 , f_ub/fu, 1)
-        k1 = min(2.8 * e2/d0-1.7, 2.5)
-
     
-    F_b_Rd = k1*alpha_b * fu * d *t / gamma_M[2] * 1e-3 # kN
-    print("F_b,Rd = {:.4f}".format(F_b_Rd))
+    print("Bolts near edge")
+    alpha_b = min(p1/3/d0 - 0.25, f_ub/fu, 1)
+    k1 = min(1.4 * p2/d0-1.7, 2.5)
+    print("edge alpha_b = {:.4f}".format(alpha_b))
+    print("edge k1 = {:.4f}".format(k1))
+    F_b_Rd = [0, 0]
+    F_b_Rd[0] = k1*alpha_b * fu * d *t / gamma_M[2] * 1e-3 # kN
+    print("edge F_b,Rd = {:.4f}".format(F_b_Rd[0]))
+
+    print("Bolts inside")
+    alpha_b = min(e1/3/d0 , f_ub/fu, 1)
+    k1 = min(2.8 * e2/d0-1.7, 2.5)
+    print("inside alpha_b = {:.4f}".format(alpha_b))
+    print("inside k1 = {:.4f}".format(k1))
+
+    F_b_Rd[1] = k1*alpha_b * fu * d *t / gamma_M[2] * 1e-3 # kN
+    print("inside F_b,Rd = {:.4f}".format(F_b_Rd[1]))
     return F_b_Rd
 
 def F_t_Rd_Bolts(f_ub=None):

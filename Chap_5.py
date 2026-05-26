@@ -26,8 +26,8 @@ while True:
         continue
 
     if choice == 1:
-        from Func_Chap5.Traction import N_pl_Rd
-        N_pl_Rd()
+        from Func_Chap5.Traction import Traction
+        Traction()
     elif choice == 2:
         from Func_Chap5.Compression import N_c_Rd
         N_c_Rd()
